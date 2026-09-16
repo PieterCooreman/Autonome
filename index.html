@@ -1,1 +1,680 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonome - Agentic CMS: Websites That Build Themselves</title>
+    <meta name="description" content="Autonome is a self-hosted, AI-powered website builder. Describe your site in plain language and an autonomous agent researches, designs, and writes the complete responsive website for you. No cloud, no subscriptions.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!--ID:1--><style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eef2ff;
+        }
+
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1e293b; overflow-x: hidden; }
+
+        .starter-bg { background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 55%, #fdf2f8 100%); min-height: 100vh; }
+
+        h1, h2, h3, h4, h5 { font-weight: 700; line-height: 1.2; }
+        h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+        .hero-section { min-height: svh; padding-top: 6rem; padding-bottom: 4rem; display: flex; align-items: center; }
+
+        .btn-primary-custom {
+            background-color: var(--primary); border-color: var(--primary); color: #fff;
+            font-weight: 600; padding: .75rem 1.75rem; border-radius: .5rem; transition: all .2s ease;
+        }
+        .btn-primary-custom:hover { background-color: var(--primary-hover); border-color: var(--primary-hover); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,70,229,.35); }
+
+        .btn-outline-custom {
+            border: 2px solid var(--primary); color: var(--primary); font-weight: 600; padding: .75rem 1.75rem; border-radius: .5rem; transition: all .2s ease; background: transparent;
+        }
+        .btn-outline-custom:hover { background-color: var(--primary); color: #fff; transform: translateY(-1px); }
+
+        .feature-card {
+            border: none; border-radius: 1rem; padding: 2rem 1.5rem; transition: all .25s ease;
+            background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.06); height: 100%;
+        }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(79,70,229,.12); }
+
+        .step-number {
+            width: 3rem; height: 3rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+            background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 1.25rem; flex-shrink: 0;
+        }
+
+        .code-block {
+            background: #1e293b; color: #e2e8f0; border-radius: .75rem; padding: 1.25rem 1.5rem; font-family: "Fira Code", "Cascadia Code", monospace; font-size: .875rem; overflow-x: auto;
+        }
+
+        .table-custom th { background-color: var(--primary-light); color: var(--primary); border-bottom-width: 2px; }
+        .table-custom td { vertical-align: middle; }
+
+        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #cbd5e1, transparent); margin: 0 auto; max-width: 60%; }
+
+        .navbar-brand { font-weight: 800; letter-spacing: -.02em; color: var(--primary) !important; }
+        .nav-link-custom { color: #475569; font-weight: 500; transition: color .15s ease; }
+        .nav-link-custom:hover, .nav-link-custom.active { color: var(--primary); }
+
+        .badge-feature { background-color: var(--primary-light); color: var(--primary); font-weight: 600; padding: .4em .8em; border-radius: .5rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+
+        .img-placeholder { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); border-radius: .75rem; display: flex; align-items: center; justify-content: center; color: #94a3b8; }
+
+        @media (max-width: 576px) {
+            .hero-section { padding-top: 5.5rem; min-height: auto; padding-bottom: 2rem; }
+            .feature-card { padding: 1.5rem 1rem; }
+        }
+    /*autonome-guard*/
+/* responsive safety net, keep - prevents mobile horizontal overflow */
+html{scroll-padding-top:84px;}
+html,body{overflow-x:hidden;overflow-x:clip;max-width:100%;}
+img,video,iframe{max-width:100%;height:auto;}
+h1,h2,h3,h4,.display-1,.display-2,.display-3,.display-4,.display-5,.display-6{overflow-wrap:break-word;}
+</style><!--/ID:1-->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Autonome - Agentic CMS: Websites That Build Themselves">
+    <meta property="og:description" content="Autonome is a self-hosted, AI-powered website builder. Describe your site in plain language and an autonomous agent researches, designs, and writes the complete responsive website for you. No cloud, no subscriptions.">
+    <meta property="og:url" content="http://localhost:8080/sites/9e85g2ooo9ljh0bu/">
+</head>
+<body class="starter-bg">
+
+<!-- Navbar -->
+<!--ID:2--><nav class="navbar navbar-expand-lg fixed-top bg-white/80 backdrop-blur-sm shadow-sm" style="backdrop-filter:blur(12px); z-index:1050;">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+            <i class="bi bi-hexagon-fill fs-4"></i> Autonome
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto me-3 gap-1">
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#how-it-works">How It Works</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#architecture">Architecture</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#api">API</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#tips">Tips &amp; Security</a></li>
+            </ul>
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="#" class="btn btn-outline-custom btn-sm px-3 py-2">Sign In</a>
+                <a href="#" class="btn btn-primary-custom btn-sm px-3 py-2">Start Building</a>
+            </div>
+        </div>
+    </div>
+</nav><!--/ID:2-->
+
+<!-- Hero -->
+<!--ID:5--><section class="hero-section text-center" id="top">
+    <div class="container">
+        <span class="badge-feature mb-4 d-inline-block">Self-hosted · AI-powered · Bootstrap 5</span>
+        <h1 class="mb-3">Websites that build<br><span style="color:var(--primary)">themselves.</span></h1>
+        <p class="lead text-secondary mx-auto mb-4" style="max-width:680px;">Describe your website in plain language - purpose, audience, style - and an autonomous AI agent researches the topic, designs the layout, and writes a complete responsive site. All on your own hardware.</p>
+        <!--ID:3--><div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+            <a href="#" class="btn btn-primary-custom"><i class="bi bi-lightning-charge-fill me-2"></i>Start Building Free</a>
+            <a href="#how-it-works" class="btn btn-outline-custom"><i class="bi bi-play-circle me-2"></i>See How It Works</a>
+        </div><!--/ID:3-->
+        <!-- Hero illustration -->
+        <!--ID:4--><div class="mx-auto" style="max-width:800px;">
+            <div class="img-placeholder shadow-sm" style="height:340px; width:100%;">
+                <div class="text-center">
+                    <i class="bi bi-code-slash display-1 text-muted"></i>
+                    <p class="mt-2 mb-0 small text-muted">AI-generated index.html preview</p>
+                </div>
+            </div>
+        </div><!--/ID:4-->
+    </div>
+</section><!--/ID:5-->
+
+<!--ID:6--><div class="container"><div class="section-divider"></div></div><!--/ID:6-->
+
+<!-- Features -->
+<!--ID:9--><section id="features" class="py-5">
+    <div class="container py-lg-4">
+        <!--ID:7--><div class="text-center mb-5">
+            <h2 class="mb-3">Everything you need, nothing you don't</h2>
+            <p class="text-secondary mx-auto" style="max-width:600px;">Autonome is a complete agentic CMS - from AI generation to version history, multi-user isolation, and one-click downloads.</p>
+        </div><!--/ID:7-->
+        <!--ID:8--><div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-robot fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Agentic AI Generation</h5>
+                    <p class="text-secondary small mb-0">The agent doesn't just complete text - it researches your topic (optional Wikipedia tools), designs the layout, and writes a complete responsive website.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-hdd-rack fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Your Hardware, Your Model</h5>
+                    <p class="text-secondary small mb-0">Works with LM Studio, Ollama (OpenAI-compatible endpoints), or Anthropic's API. No cloud requirement, no subscriptions.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-chat-dots fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Plain-Language Editing</h5>
+                    <p class="text-secondary small mb-0">Keep asking for changes - "make the hero full-screen", "add testimonials" - and the AI patches the page without rebuilding from scratch.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-images fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Bring Your Own Photos</h5>
+                    <p class="text-secondary small mb-0">Upload images and the AI weaves them into the design. Images wider than 1920 px are automatically resized.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-clock-history fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Version History &amp; Restores</h5>
+                    <p class="text-secondary small mb-0">A backup is created before every generation. Preview any previous version full-screen and restore with one click - restores are also backed up.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-file-earmark-zip fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Single-File Output</h5>
+                    <p class="text-secondary small mb-0">Clean, semantic, mobile-first HTML/CSS/JS on Bootstrap 5.3 with cookie notice, privacy statement, and Open Graph tags - ready to host anywhere.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-download fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Download &amp; Publish Anywhere</h5>
+                    <p class="text-secondary small mb-0">Every project downloads as a ready-to-host autonome.zip. Drop it onto any static host - Netlify, GitHub Pages, your own server.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-people fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Multi-User</h5>
+                    <p class="text-secondary small mb-0">Every user gets isolated projects and files. Admins manage the AI configuration centrally and can change user roles.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <i class="bi bi-gear fs-1 text-primary mb-3 d-block"></i>
+                    <h5 class="mb-2">Async Generation</h5>
+                    <p class="text-secondary small mb-0">Long builds run in the background. Leave the page or close the browser - pick it up later. Optionally get an email when it finishes.</p>
+                </div>
+            </div>
+        </div><!--/ID:8-->
+    </div>
+</section><!--/ID:9-->
+
+<!--ID:10--><div class="container"><div class="section-divider"></div></div><!--/ID:10-->
+
+<!-- How It Works -->
+<!--ID:14--><section id="how-it-works" class="py-5 bg-white">
+    <div class="container py-lg-4">
+        <!--ID:11--><div class="text-center mb-5">
+            <h2 class="mb-3">How a generation works</h2>
+            <p class="text-secondary mx-auto" style="max-width:600px;">From prompt to published site in four simple steps.</p>
+        </div><!--/ID:11-->
+        <!--ID:12--><div class="row g-4 align-items-start">
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="step-number mx-auto mb-3">1</div>
+                <h5 class="mb-2">Describe your site</h5>
+                <p class="text-secondary small mb-0">Tell the agent what you want - goal, audience, colors, style. Upload photos for best results.</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="step-number mx-auto mb-3">2</div>
+                <h5 class="mb-2">AI researches &amp; builds</h5>
+                <p class="text-secondary small mb-0">The agent may search Wikipedia, reason about your topic, and writes exactly one complete HTML document.</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="step-number mx-auto mb-3">3</div>
+                <h5 class="mb-2">Validate &amp; backup</h5>
+                <p class="text-secondary small mb-0">The server validates the HTML, cleans paths, injects OG tags, and backs up the previous version.</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="step-number mx-auto mb-3">4</div>
+                <h5 class="mb-2">Refine or download</h5>
+                <p class="text-secondary small mb-0">Keep asking for changes in plain language, preview live, or download the complete site as a zip.</p>
+            </div>
+        </div><!--/ID:12-->
+
+        <!-- Code example -->
+        <!--ID:13--><div class="mt-5 pt-4">
+            <h3 class="text-center mb-4">Quick start</h3>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <p class="text-secondary small mb-2">Install ASPPY and serve the app folder:</p>
+                    <div class="code-block">
+                        pip install asppy<br><br>
+                        asppy 0.0.0.0 8080 www
+                    </div>
+                    <p class="text-secondary small mt-3 mb-0">Open <code class="bg-light px-2 py-1 rounded">http://localhost:8080</code>, sign in with admin / admin123, configure your LLM endpoint, and start building.</p>
+                </div>
+            </div>
+        </div><!--/ID:13-->
+    </div>
+</section><!--/ID:14-->
+
+<!--ID:15--><div class="container"><div class="section-divider"></div></div><!--/ID:15-->
+
+<!-- Architecture -->
+<!--ID:19--><section id="architecture" class="py-5">
+    <div class="container py-lg-4">
+        <!--ID:16--><div class="text-center mb-5">
+            <h2 class="mb-3">Architecture &amp; file layout</h2>
+            <p class="text-secondary mx-auto" style="max-width:600px;">A handful of files. Self-hosted on ASPPY (Classic ASP/VBScript runtime for Python). No npm, no build step.</p>
+        </div><!--/ID:16-->
+
+        <!--ID:17--><div class="row g-4 align-items-start">
+            <div class="col-lg-5">
+                <div class="feature-card h-100">
+                    <h5 class="mb-3"><i class="bi bi-folder2-open me-2 text-primary"></i>Project folder structure</h5>
+                    <pre class="code-block mb-0" style="background:transparent; padding:0; font-size:.8rem;"><span style="color:#a78bfa">autonome/</span>
+├── app.db              <span style="color:#94a3b8"># SQLite database</span>
+├── index.html          <span style="color:#94a3b8"># React SPA UI</span>
+├── script.js           <span style="color:#94a3b8"># React logic</span>
+├── style.css           <span style="color:#94a3b8"># UI styling</span>
+├── api.asp             <span style="color:#94a3b8"># REST JSON API</span>
+├── favicon.ico
+├── robots.txt
+└── sites/
+    └── &lt;random-16-char&gt;/   <span style="color:#94a3b8"># One folder per project</span>
+        ├── index.html      <span style="color:#94a3b8"># Generated site</span>
+        ├── img/            <span style="color:#94a3b8"># Uploaded photos</span>
+        └── backups/
+            └── &lt;timestamp&gt;/  <span style="color:#94a3b8"># Version history</span></pre>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="feature-card h-100">
+                    <h5 class="mb-3"><i class="bi bi-diagram-3 me-2 text-primary"></i>How it connects</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex align-items-start gap-3 mb-3 pb-3 border-bottom">
+                            <i class="bi bi-browser-chrome fs-4 text-primary mt-1"></i>
+                            <div><strong>React SPA</strong> - The browser loads index.html + script.js. All navigation is client-side via URL fragments (#/...).</div>
+                        </li>
+                        <li class="d-flex align-items-start gap-3 mb-3 pb-3 border-bottom">
+                            <i class="bi bi-server fs-4 text-primary mt-1"></i>
+                            <div><strong>ASPPY Runtime</strong> - Serves static files and routes API calls to api.asp (Classic ASP on Python).</div>
+                        </li>
+                        <li class="d-flex align-items-start gap-3 mb-3 pb-3 border-bottom">
+                            <i class="bi bi-database fs-4 text-primary mt-1"></i>
+                            <div><strong>SQLite (app.db)</strong> - Stores users, projects, config, jobs, chat history. Created automatically on first request.</div>
+                        </li>
+                        <li class="d-flex align-items-start gap-3">
+                            <i class="bi bi-cpu fs-4 text-primary mt-1"></i>
+                            <div><strong>LLM Endpoint</strong> - Your local LM Studio / Ollama server or Anthropic API. The agent sends prompts and receives complete HTML.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><!--/ID:17-->
+
+        <!-- Tech badges -->
+        <!--ID:18--><div class="text-center mt-5">
+            <p class="text-secondary small mb-3">Built with</p>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-filetype-py me-1"></i>Python 3.9+</span>
+                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-box me-1"></i>ASPPY</span>
+                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-database me-1"></i>SQLite</span>
+                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-filetype-js me-1"></i>React SPA</span>
+                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-filetype-html me-1"></i>Bootstrap 5.3</span>
+            </div>
+        </div><!--/ID:18-->
+    </div>
+</section><!--/ID:19-->
+
+<!--ID:20--><div class="container"><div class="section-divider"></div></div><!--/ID:20-->
+
+<!-- UI Walkthrough -->
+<!--ID:24--><section id="ui" class="py-5 bg-white">
+    <div class="container py-lg-4">
+        <!--ID:21--><div class="text-center mb-5">
+            <h2 class="mb-3">The user interface</h2>
+            <p class="text-secondary mx-auto" style="max-width:600px;">A clean, modern single-page app with login, dashboard, admin panel, and the AI Builder workspace.</p>
+        </div><!--/ID:21-->
+
+        <!-- Workspace split view -->
+        <!--ID:22--><div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div class="feature-card p-0 overflow-hidden">
+                    <div class="bg-dark text-white px-3 py-2 d-flex align-items-center gap-2" style="font-size:.75rem;">
+                        <span class="rounded-circle bg-danger" style="width:10px;height:10px;display:inline-block;"></span>
+                        <span class="rounded-circle bg-warning" style="width:10px;height:10px;display:inline-block;"></span>
+                        <span class="rounded-circle bg-success" style="width:10px;height:10px;display:inline-block;"></span>
+                        <span class="ms-2 text-muted">Project Workspace - Split View</span>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-md-6 border-end">
+                            <div class="img-placeholder" style="height:300px; width:100%; background:linear-gradient(135deg,#f1f5f9,#e2e8f0);">
+                                <div class="text-center">
+                                    <i class="bi bi-eye fs-1 text-muted"></i>
+                                    <p class="mt-2 mb-0 small text-muted">Live Preview (iframe)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex flex-column" style="background:#f8fafc;">
+                            <div class="px-3 py-2 border-bottom d-flex align-items-center gap-2">
+                                <i class="bi bi-robot text-primary"></i>
+                                <span class="fw-semibold small">AI Builder Chat</span>
+                            </div>
+                            <div class="flex-grow-1 p-3 overflow-auto" style="min-height:200px;">
+                                <div class="mb-3">
+                                    <div class="bg-white rounded-pill px-3 py-2 shadow-sm d-inline-block text-start" style="max-width:85%;">
+                                        <small class="text-secondary">Build a modern portfolio site for a photographer with dark theme and gallery grid</small>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="bg-primary text-white rounded-pill px-3 py-2 shadow-sm d-inline-block text-start" style="max-width:90%;">
+                                        <small><i class="bi bi-robot me-1"></i>🧠 thinking... Building complete responsive portfolio with Bootstrap 5. Dark theme, masonry gallery, contact form.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3 border-top">
+                                <div class="input-group">
+                                    <input type="text" class="form-control rounded-pill" placeholder="Ask for changes..." disabled aria-label="AI prompt input">
+                                    <button class="btn btn-primary-custom px-4" disabled><i class="bi bi-send-fill"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/ID:22-->
+
+        <!-- UI sections grid -->
+        <!--ID:23--><div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card text-center h-100">
+                    <i class="bi bi-box-seam fs-2 text-primary mb-2 d-block"></i>
+                    <h6>Landing Page</h6>
+                    <p class="text-secondary small mb-0">Public homepage explaining Autonome. Sign in or start building.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card text-center h-100">
+                    <i class="bi bi-person-vcard fs-2 text-primary mb-2 d-block"></i>
+                    <h6>Account</h6>
+                    <p class="text-secondary small mb-0">Update email, change password, manage your profile.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card text-center h-100">
+                    <i class="bi bi-grid fs-2 text-primary mb-2 d-block"></i>
+                    <h6>Dashboard</h6>
+                    <p class="text-secondary small mb-0">List all projects. Create, rename, copy, note, or delete.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card text-center h-100">
+                    <i class="bi bi-sliders fs-2 text-primary mb-2 d-block"></i>
+                    <h6>Admin Panel</h6>
+                    <p class="text-secondary small mb-0">LLM config, email settings, user management.</p>
+                </div>
+            </div>
+        </div><!--/ID:23-->
+    </div>
+</section><!--/ID:24-->
+
+<!--ID:25--><div class="container"><div class="section-divider"></div></div><!--/ID:25-->
+
+<!-- API -->
+<!--ID:29--><section id="api" class="py-5">
+    <div class="container py-lg-4">
+        <!--ID:26--><div class="text-center mb-5">
+            <h2 class="mb-3">The API at a glance</h2>
+            <p class="text-secondary mx-auto" style="max-width:600px;">The SPA talks to api.asp over JSON. All actions are session-authenticated with cookie-based sessions.</p>
+        </div><!--/ID:26-->
+
+        <!--ID:27--><div class="table-responsive">
+            <table class="table table-custom table-hover mb-0 rounded overflow-hidden shadow-sm" style="background:#fff; border-radius:.75rem;">
+                <thead>
+                    <tr>
+                        <th scope="col" class="ps-4 py-3">Action</th>
+                        <th scope="col" class="py-3">Purpose</th>
+                    </tr>
+                </thead>
+                <tbody class="small">
+                    <tr><td class="ps-4 fw-semibold text-primary">setup, login, logout, session, register</td><td>Authentication &amp; account management</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">change_password, update_email, forgot_password, reset_password</td><td>Password &amp; email management</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">get_config, save_config, list_models</td><td>Admin LLM &amp; email configuration</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">get_projects, create_project, rename_project, copy_project, delete_project, reset_project, update_notes</td><td>Project management</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">generate_website, generate_worker, generate_status, cancel_generation, active_job, keepalive</td><td>AI generation jobs (async)</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">upload_image, list_images, delete_image</td><td>Image handling &amp; auto-resize</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">list_backups, restore_backup, preview_backup, download_project, get_project_files</td><td>Version history &amp; exports</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">get_chat_history</td><td>Per-project chat log</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">admin_get_users, admin_update_user</td><td>User administration</td></tr>
+                    <tr><td class="ps-4 fw-semibold text-primary">version, ping</td><td>Health &amp; version info</td></tr>
+                </tbody>
+            </table>
+        </div><!--/ID:27-->
+
+        <!--ID:28--><div class="alert alert-info mt-4 d-flex align-items-start gap-2" role="alert">
+            <i class="bi bi-info-circle-fill mt-1"></i>
+            <div><strong>Sessions:</strong> Cookie-based. The SPA pings keepalive every 5 minutes while logged in. Project operations verify ownership (user_id), backups and filenames are checked against path traversal, and project folders use random names so usernames never appear in URLs.</div>
+        </div><!--/ID:28-->
+    </div>
+</section><!--/ID:29-->
+
+<!--ID:30--><div class="container"><div class="section-divider"></div></div><!--/ID:30-->
+
+<!-- Tips & Security -->
+<!--ID:33--><section id="tips" class="py-5 bg-white">
+    <div class="container py-lg-4">
+        <!--ID:31--><div class="row g-4">
+            <!-- Tips -->
+            <div class="col-lg-6">
+                <h3 class="mb-4"><i class="bi bi-lightbulb me-2 text-primary"></i>Tips for best results</h3>
+                <ul class="list-unstyled mb-0">
+                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">1</span>
+                        <div><strong>Be specific.</strong> Mention goal, audience, colors, style, tone and the content you want.</div>
+                    </li>
+                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">2</span>
+                        <div><strong>Upload photos first.</strong> The agent can design around them for much better results.</div>
+                    </li>
+                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">3</span>
+                        <div><strong>Iterate.</strong> Don't expect perfection in one shot - ask for refinements in plain language.</div>
+                    </li>
+                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">4</span>
+                        <div><strong>Use suggestions.</strong> Discover useful improvement patterns with the built-in prompt library.</div>
+                    </li>
+                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">5</span>
+                        <div><strong>Write in your own language.</strong> The generated site is written in the same language as your request.</div>
+                    </li>
+                    <li class="d-flex gap-3">
+                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">6</span>
+                        <div><strong>Raise max_tokens</strong> if you see "cut off by the token limit" errors.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Security -->
+            <div class="col-lg-6">
+                <h3 class="mb-4"><i class="bi bi-shield-lock me-2 text-primary"></i>Security notes</h3>
+                <div class="feature-card h-100">
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
+                            <div><strong>Change default credentials</strong> immediately after first login (admin / admin123).</div>
+                        </li>
+                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
+                            <div><strong>Bcrypt hashes</strong> for passwords. Reset tokens are single-use and expire after 1 hour.</div>
+                        </li>
+                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
+                            <div><strong>Session-authenticated API</strong>. Project operations verify ownership (user_id).</div>
+                        </li>
+                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
+                            <div><strong>Path traversal protection</strong> on backups and filenames. Random project folder names.</div>
+                        </li>
+                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
+                            <div><strong>Limited outbound requests</strong> - only to your configured LLM endpoint and optionally Wikipedia.</div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
+                            <div><strong>ValidateFileExtension</strong> refuses any filename other than index.html. Structural completeness check before saving - a broken AI response never overwrites your site.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><!--/ID:31-->
+
+        <!-- Links -->
+        <!--ID:32--><div class="text-center mt-5">
+            <p class="text-secondary mb-3">Learn more</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="https://github.com/PieterCooreman/ASPPY" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom btn-sm"><i class="bi bi-github me-2"></i>ASPPY on GitHub</a>
+                <a href="https://www.piwheels.org/project/asppy/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom btn-sm"><i class="bi bi-box me-2"></i>ASPPY on PyPI</a>
+            </div>
+        </div><!--/ID:32-->
+    </div>
+</section><!--/ID:33-->
+
+<!-- Footer -->
+<!--ID:36--><footer class="py-5 mt-0 border-top bg-white">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <!--ID:34--><div class="col-md-6 text-center text-md-start">
+                <p class="mb-1 fw-semibold"><i class="bi bi-hexagon-fill me-2" style="color:var(--primary);"></i>Autonome</p>
+                <p class="small text-secondary mb-0">&copy; 2026 Autonome. Self-hosted, AI-powered website builder.</p>
+            </div><!--/ID:34-->
+            <!--ID:35--><div class="col-md-6 text-center text-md-end">
+                <a href="#" class="text-decoration-none small me-3" data-bs-toggle="modal" data-bs-target="#privacyModal"><i class="bi bi-shield-check me-1"></i>Privacy</a>
+                <a href="#" class="text-decoration-none small" data-bs-toggle="modal" data-bs-target="#cookieModal"><i class="bi bi-cookie me-1"></i>Cookies / Cookie settings</a>
+            </div><!--/ID:35-->
+        </div>
+    </div>
+</footer><!--/ID:36-->
+
+<!-- Cookie Modal -->
+<!--ID:40--><div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!--ID:37--><div class="modal-header">
+                <h5 class="modal-title" id="cookieModalLabel"><i class="bi bi-cookie me-2"></i>Cookies</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div><!--/ID:37-->
+            <!--ID:38--><div class="modal-body">
+                <p class="small text-secondary mb-3">Autonome uses the following cookies:</p>
+                <ul class="small text-secondary mb-3 ps-3">
+                    <li><strong>session</strong> (functional) - Maintains your login session via HTTP cookie. Expires when you close the browser or log out.</li>
+                    <li><strong>cookieConsent</strong> (localStorage) - Stores whether you accepted or rejected cookies. No tracking or marketing cookies are used on this site.</li>
+                </ul>
+                <p class="small text-secondary mb-0">If embedded content (maps, video, analytics) is added later, it may set its own cookies - see the Privacy statement for details.</p>
+            </div><!--/ID:38-->
+            <!--ID:39--><div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" id="cookieReject" data-bs-dismiss="modal">Reject</button>
+                <button type="button" class="btn btn-primary-custom btn-sm px-4" id="cookieAccept">Accept</button>
+            </div><!--/ID:39-->
+        </div>
+    </div>
+</div><!--/ID:40--><!--ID:41-->
+
+<!-- Privacy Modal -->
+<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="privacyModalLabel"><i class="bi bi-shield-check me-2"></i>Privacy statement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body small">
+                <p><strong>Data controller:</strong> Autonome (self-hosted).</p>
+                <p><strong>What we collect:</strong></p>
+                <ul>
+                    <li>User-provided data: username, email address, password (bcrypt hash), project names and notes.</li>
+                    <li>Generated websites: index.html files stored in per-project folders.</li>
+                    <li>Uploaded images: stored in each project's img/ folder (auto-resized to max 1920 px).</li>
+                    <li>Chat history: prompts and AI responses per project, stored in SQLite.</li>
+                    <li>Server logs: IP address and user agent for security purposes.</li>
+                </ul>
+                <p><strong>Purpose &amp; legal basis:</strong></p>
+                <ul>
+                    <li>To operate and secure the website (legitimate interest / contract).</li>
+                    <li>To respond to your requests via the AI agent (consent).</li>
+                    <li>To send password-reset and generation-finished emails (optional, consent-based).</li>
+                </ul>
+                <p><strong>Data sharing:</strong> No data is sold. Outbound requests go only to your configured LLM endpoint and optionally to the public Wikipedia API.</p>
+                <p><strong>Retention:</strong> Server logs are kept briefly. Form/chat data is retained as long as the project exists. Reset tokens expire after 1 hour and are single-use.</p>
+                <p><strong>Your rights:</strong> You may request access, correction or deletion of your data. Admins can manage users and promote/demote roles.</p>
+                <p class="mb-0 text-secondary">This is a starter template - adapt this text to your actual processing setup.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Cookie consent logic
+    try {
+        if (!localStorage.getItem('cookieConsent')) {
+            var cookieEl = document.getElementById('cookieModal');
+            if (cookieEl && window.bootstrap) new bootstrap.Modal(cookieEl).show();
+        }
+    } catch(e) {}
+
+    var accBtn = document.getElementById('cookieAccept');
+    if (accBtn) accBtn.addEventListener('click', function() {
+        try { localStorage.setItem('cookieConsent','accepted'); } catch(e) {}
+        var m = document.getElementById('cookieModal');
+        if (m && window.bootstrap) { var inst = bootstrap.Modal.getInstance(m); if (inst) inst.hide(); }
+    });
+
+    var rejBtn = document.getElementById('cookieReject');
+    if (rejBtn) rejBtn.addEventListener('click', function() {
+        try { localStorage.setItem('cookieConsent','rejected'); } catch(e) {}
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                var offset = 80;
+                var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+                // Close mobile nav if open
+                var navCollapse = document.getElementById('mainNav');
+                if (navCollapse && navCollapse.classList.contains('show')) {
+                    bootstrap.Collapse.getInstance(navCollapse)?.hide();
+                }
+            }
+        });
+    });
+
+    // Active nav link on scroll
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-link-custom');
+    window.addEventListener('scroll', function() {
+        var scrollY = window.pageYOffset;
+        sections.forEach(function(section) {
+            var top = section.offsetTop - 120;
+            var height = section.offsetHeight;
+            var id = section.getAttribute('id');
+            if (scrollY >= top && scrollY < top + height) {
+                navLinks.forEach(function(link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, { passive: true });
+});
+</script>
+<!--/ID:41--></body>
+</html>
