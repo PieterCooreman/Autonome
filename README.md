@@ -9,9 +9,10 @@ on Bootstrap 5. It runs entirely on your own hardware against your own LLM. No c
 subscriptions, no data leaving your network.
 
 Autonome is **built for ASPPY**, the Classic ASP/VBScript runtime for Python. The whole
-application lives in this `www` folder: the UI is a React single-page app (`index.html` +
-`script.js` + `style.css`), and the backend is the REST JSON API in `api.asp` backed by a
-SQLite database (`app.db`) — served by the ASPPY runtime.
+application consists of just a handful of files that you can keep in any folder you like (the
+`www` folder in this project is only one example): the UI is a React single-page app
+(`index.html` + `script.js` + `style.css`), and the backend is the REST JSON API in `api.asp`
+backed by a SQLite database (`app.db`) — served by the ASPPY runtime.
 
 - ASPPY project: https://github.com/PieterCooreman/ASPPY
 - ASPPY on PyPI (installable): https://www.piwheels.org/project/asppy/
@@ -89,25 +90,30 @@ The ASPPY source folder is **not** required — install the runtime with `pip` (
 
 ## Start the application
 
-Serve this `www` folder with the ASPPY runtime. From anywhere (the ASPPY source folder is not
-required):
+Serve the app's folder with the ASPPY runtime, using the `asppy` command and pointing the
+`docroot` argument at whatever folder contains the app files — the folder can have any name and
+live anywhere:
 
 ```bash
-asppy 0.0.0.0 8080 www
+asppy 0.0.0.0 8080 <path-to-folder>
 ```
 
-Or, on Windows, double-click `start_www.bat` — it stops anything already listening on port
-8080, starts the server and opens `http://localhost:8080` in your browser.
+For example, if the files are in a folder called `www`:
 
 ```text
 Usage:  asppy [host] [port] [docroot]
         asppy 0.0.0.0 8080 www
 ```
 
-> In a source checkout the equivalent is `python ASPPY/server.py 0.0.0.0 8080 www`, but after
+Or, on Windows, double-click `start_www.bat` — it stops anything already listening on port
+8080, starts the server and opens `http://localhost:8080` in your browser. (Adjust the `docroot`
+argument in the `.bat` if your app folder has a different name.)
+
+> In a source checkout the equivalent is `python ASPPY/server.py 0.0.0.0 8080 <folder>`, but after
 > `pip install asppy` the `asppy` command alone is enough.
 
-The database (`app.db`) is created automatically on the first request. No setup step needed.
+The database (`app.db`) is created automatically in the app folder on the first request. No
+setup step needed.
 
 ---
 
@@ -306,10 +312,11 @@ to **admin** or demote them back to **user**.
 
 ## Where files are stored
 
-Relative to the `www` root:
+Everything lives inside the app folder you serve with ASPPY (whatever it is called — `www`
+here is just an example). Relative to that folder:
 
 ```
-www/
+<app-folder>/
 ├── app.db            SQLite database (users, projects, config, jobs, chat, ...)
 ├── index.html        The Autonome SPA itself (login, dashboard, admin, workspace)
 ├── script.js         React UI code
