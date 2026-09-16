@@ -1,74 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autonome - Agentic CMS: Websites That Build Themselves</title>
-    <meta name="description" content="Autonome is a self-hosted, AI-powered website builder. Describe your site in plain language and an autonomous agent researches, designs, and writes the complete responsive website for you. No cloud, no subscriptions.">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!--ID:1--><style>
-        :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --primary-light: #eef2ff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autonome Agentic CMS - Websites that build themselves</title>
+<meta name="description" content="Autonome is a self-hosted, AI-powered website builder. Describe your site in plain language and an autonomous agent researches, designs and writes the complete Bootstrap 5 page - on your own hardware, against your own LLM. No cloud, no subscriptions.">
 
-        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1e293b; overflow-x: hidden; }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
-        .starter-bg { background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 55%, #fdf2f8 100%); min-height: 100vh; }
+<!--ID:1--><style>
+/* ============ Autonome - design tokens ============ */
+:root{
+  --bg:#0a0f1c;
+  --bg-2:#0d1424;
+  --surface:#111a2e;
+  --surface-2:#16213a;
+  --line:rgba(148,163,184,.16);
+  --text:#e7edf8;
+  --muted:#9aa8c0;
+  --accent:#4ade80;
+  --accent-soft:rgba(74,222,128,.13);
+  --violet:#a78bfa;
+  --amber:#fbbf24;
+  --red:#f87171;
+}
+html{scroll-behavior:smooth;scroll-padding-top:86px;}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;overflow-x:hidden;}
+.mono,code,pre,kbd,.mono-badge{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;}
+::selection{background:rgba(74,222,128,.35);color:#fff;}
+a{color:var(--accent);} a:hover{color:#7ceba6;}
+h1,h2,h3,h4{font-weight:700;letter-spacing:-.02em;}
+.skip-link{position:absolute;left:-999px;top:8px;z-index:2000;background:var(--accent);color:#052e16;padding:.5rem 1rem;border-radius:8px;font-weight:600;}
+.skip-link:focus{left:8px;color:#052e16;}
 
-        h1, h2, h3, h4, h5 { font-weight: 700; line-height: 1.2; }
-        h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
-        h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
-        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+/* ============ Navbar ============ */
+.navbar-az{background:rgba(10,15,28,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);min-height:64px;}
+.brand-mark{width:36px;height:36px;flex:0 0 auto;border-radius:9px;background:var(--accent-soft);border:1px solid rgba(74,222,128,.45);display:flex;align-items:center;justify-content:center;}
+.brand-name{font-weight:700;font-size:1.15rem;color:var(--text);letter-spacing:-.02em;line-height:1;}
+.brand-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+.navbar-az .nav-link{color:var(--muted);font-weight:500;font-size:.92rem;padding-inline:.7rem;}
+.navbar-az .nav-link:hover,.navbar-az .nav-link:focus{color:var(--text);}
+@media (max-width:991.98px){
+  .navbar-az .navbar-collapse{background:rgba(13,20,36,.97);border:1px solid var(--line);border-radius:14px;padding:1rem;margin-top:.5rem;}
+  .navbar-az .nav-link{padding-block:.55rem;border-bottom:1px dashed rgba(148,163,184,.12);}
+}
 
-        .hero-section { min-height: svh; padding-top: 6rem; padding-bottom: 4rem; display: flex; align-items: center; }
+/* ============ Buttons & chips ============ */
+.btn-accent{--bs-btn-bg:var(--accent);--bs-btn-border-color:var(--accent);--bs-btn-color:#052e16;--bs-btn-hover-bg:#7ceba6;--bs-btn-hover-border-color:#7ceba6;--bs-btn-hover-color:#04230f;--bs-btn-active-bg:#39c96d;--bs-btn-active-border-color:#39c96d;--bs-btn-active-color:#052e16;font-weight:600;border-radius:10px;min-height:44px;}
+.btn-ghost{--bs-btn-color:var(--text);--bs-btn-border-color:rgba(148,163,184,.4);--bs-btn-hover-bg:rgba(74,222,128,.08);--bs-btn-hover-border-color:var(--accent);--bs-btn-hover-color:#fff;--bs-btn-active-bg:rgba(74,222,128,.15);--bs-btn-active-color:#fff;font-weight:600;border-radius:10px;min-height:44px;}
+.chip{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);border:1px solid var(--line);background:rgba(148,163,184,.05);padding:.32rem .65rem;border-radius:999px;white-space:nowrap;}
+.chip-accent{color:var(--accent);border-color:rgba(74,222,128,.4);background:var(--accent-soft);}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pulse 2.2s infinite;}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(74,222,128,0);}100%{box-shadow:0 0 0 0 rgba(74,222,128,0);}}
 
-        .btn-primary-custom {
-            background-color: var(--primary); border-color: var(--primary); color: #fff;
-            font-weight: 600; padding: .75rem 1.75rem; border-radius: .5rem; transition: all .2s ease;
-        }
-        .btn-primary-custom:hover { background-color: var(--primary-hover); border-color: var(--primary-hover); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,70,229,.35); }
+/* ============ Hero ============ */
+.hero{position:relative;overflow:hidden;padding-top:calc(64px + clamp(3rem,9vh,5.5rem));padding-bottom:clamp(3rem,8vh,5rem);}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 45% at 72% 8%,rgba(74,222,128,.14),transparent 62%),radial-gradient(45% 40% at 12% 85%,rgba(167,139,250,.12),transparent 60%);pointer-events:none;}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.07) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(75% 65% at 50% 28%,#000 25%,transparent 78%);mask-image:radial-gradient(75% 65% at 50% 28%,#000 25%,transparent 78%);pointer-events:none;}
+.hero .container{position:relative;z-index:1;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);}
+.hero h1{font-size:clamp(2.35rem,6.4vw,4.4rem);line-height:1.04;margin-bottom:1.1rem;}
+.hero h1 .hl{color:var(--accent);}
+.hero-lead{font-size:clamp(1rem,1.6vw,1.2rem);color:var(--muted);max-width:34rem;}
 
-        .btn-outline-custom {
-            border: 2px solid var(--primary); color: var(--primary); font-weight: 600; padding: .75rem 1.75rem; border-radius: .5rem; transition: all .2s ease; background: transparent;
-        }
-        .btn-outline-custom:hover { background-color: var(--primary); color: #fff; transform: translateY(-1px); }
+/* Terminal */
+.term{background:#0b1120;border:1px solid var(--line);border-radius:16px;box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 0 1px rgba(74,222,128,.06);overflow:hidden;}
+.term-bar{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-bottom:1px solid var(--line);background:rgba(148,163,184,.04);}
+.tdot{width:11px;height:11px;border-radius:50%;}
+.tdot.r{background:#f87171;} .tdot.y{background:#fbbf24;} .tdot.g{background:#4ade80;}
+.term-title{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);}
+.term-body{padding:1.15rem 1.25rem 1.3rem;min-height:300px;font-family:'JetBrains Mono',monospace;font-size:.84rem;line-height:1.85;}
+.tl{white-space:pre-wrap;overflow-wrap:anywhere;}
+.tl .tp{color:var(--accent);user-select:none;}
+.t-cmd{color:#dbe6f7;}
+.t-ok{color:var(--accent);}
+.t-dim{color:var(--muted);}
+.t-prompt{color:#fff;}
+.t-ai{color:var(--violet);}
+.t-cursor{display:inline-block;width:.58em;height:1.05em;background:var(--accent);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
 
-        .feature-card {
-            border: none; border-radius: 1rem; padding: 2rem 1.5rem; transition: all .25s ease;
-            background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.06); height: 100%;
-        }
-        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(79,70,229,.12); }
+/* ============ Marquee ============ */
+.marquee{overflow:hidden;border-block:1px solid var(--line);background:var(--bg-2);}
+.mq-track{display:flex;width:max-content;animation:mq 30s linear infinite;}
+.marquee:hover .mq-track{animation-play-state:paused;}
+@keyframes mq{to{transform:translateX(-50%);}}
+.mq-item{display:inline-flex;align-items:center;gap:.9rem;padding:.85rem 1.4rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--muted);white-space:nowrap;}
+.mq-item i{color:var(--accent);font-size:.6rem;}
 
-        .step-number {
-            width: 3rem; height: 3rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
-            background: var(--primary-light); color: var(--primary); font-weight: 800; font-size: 1.25rem; flex-shrink: 0;
-        }
+/* ============ Sections ============ */
+.section{padding-block:clamp(3.5rem,8vw,5.5rem);}
+.sec-kicker{display:inline-flex;align-items:center;gap:.7rem;font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem;}
+.sec-kicker::before{content:"";width:26px;height:1px;background:var(--accent);}
+.sec-title{font-size:clamp(1.75rem,3.8vw,2.6rem);line-height:1.12;margin-bottom:.8rem;}
+.sec-sub{color:var(--muted);max-width:46rem;font-size:1.02rem;}
 
-        .code-block {
-            background: #1e293b; color: #e2e8f0; border-radius: .75rem; padding: 1.25rem 1.5rem; font-family: "Fira Code", "Cascadia Code", monospace; font-size: .875rem; overflow-x: auto;
-        }
+/* Reveal */
+[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;transition-delay:var(--d,0s);}
+[data-reveal].in{opacity:1;transform:none;}
 
-        .table-custom th { background-color: var(--primary-light); color: var(--primary); border-bottom-width: 2px; }
-        .table-custom td { vertical-align: middle; }
+/* Feature cards (bento) */
+.f-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;height:100%;padding:1.5rem 1.4rem;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;}
+.f-card:hover{transform:translateY(-5px);border-color:rgba(74,222,128,.55);box-shadow:0 16px 40px rgba(0,0,0,.4),0 0 0 1px rgba(74,222,128,.14);}
+.f-ico{width:46px;height:46px;border-radius:12px;background:var(--accent-soft);border:1px solid rgba(74,222,128,.35);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:1rem;}
+.f-card h3{font-size:1.06rem;margin-bottom:.5rem;}
+.f-card p{color:var(--muted);font-size:.9rem;margin:0;}
+.f-tag{margin-top:.9rem;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--violet);}
 
-        .section-divider { height: 1px; background: linear-gradient(90deg, transparent, #cbd5e1, transparent); margin: 0 auto; max-width: 60%; }
+/* ============ How it works (sticky 2-col) ============ */
+.sticky-col{position:sticky;top:100px;}
+@media (max-width:991.98px){.sticky-col{position:static;}}
+.step{position:relative;padding-left:3.4rem;margin-bottom:1.6rem;}
+.step::before{content:"";position:absolute;left:27px;top:52px;bottom:-1.6rem;width:1px;background:linear-gradient(var(--line),transparent);}
+.step:last-child::before{display:none;}
+.step-num{position:absolute;left:0;top:0;width:54px;height:54px;border-radius:14px;background:var(--surface);border:1px solid rgba(74,222,128,.4);color:var(--accent);font-family:'JetBrains Mono',monospace;font-weight:600;display:flex;align-items:center;justify-content:center;font-size:.95rem;}
+.step-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.3rem;height:calc(100% - 0px);}
+.step-card h3{font-size:1.02rem;margin-bottom:.45rem;}
+.step-card p{color:var(--muted);font-size:.9rem;margin:0;}
 
-        .navbar-brand { font-weight: 800; letter-spacing: -.02em; color: var(--primary) !important; }
-        .nav-link-custom { color: #475569; font-weight: 500; transition: color .15s ease; }
-        .nav-link-custom:hover, .nav-link-custom.active { color: var(--primary); }
+/* ============ Tabs (UI tour) ============ */
+.nav-tabs-az{border-bottom:1px solid var(--line);gap:.25rem;flex-wrap:wrap;}
+.nav-tabs-az .nav-link{background:transparent;border:none;color:var(--muted);font-weight:600;font-size:.92rem;padding:.7rem 1.05rem;border-radius:10px 10px 0 0;display:inline-flex;align-items:center;gap:.5rem;}
+.nav-tabs-az .nav-link:hover{color:var(--text);background:rgba(148,163,184,.07);}
+.nav-tabs-az .nav-link.active{background:var(--surface);color:var(--accent);border:1px solid var(--line);border-bottom-color:transparent;}
+.tab-pane-az{padding-top:2rem;}
 
-        .badge-feature { background-color: var(--primary-light); color: var(--primary); font-weight: 600; padding: .4em .8em; border-radius: .5rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+/* Mock windows */
+.mock{background:#0b1120;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.mock-bar{display:flex;align-items:center;gap:.5rem;padding:.6rem .9rem;border-bottom:1px solid var(--line);background:rgba(148,163,184,.04);}
+.url-pill{margin-left:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);background:rgba(148,163,184,.08);border:1px solid var(--line);padding:.25rem .7rem;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mock-body{padding:1.1rem;}
+/* mini fake site */
+.mini-nav{height:14px;width:38%;border-radius:4px;background:rgba(148,163,184,.25);margin-bottom:.9rem;}
+.mini-hero{border-radius:10px;padding:1.4rem 1.2rem;background:linear-gradient(135deg,rgba(74,222,128,.22),rgba(167,139,250,.18));border:1px solid rgba(74,222,128,.3);}
+.mini-line{height:9px;border-radius:3px;background:rgba(231,237,248,.5);margin-bottom:.5rem;}
+.mini-line.w60{width:60%;} .mini-line.w80{width:80%;} .mini-line.w40{width:40%;background:rgba(231,237,248,.3);}
+.mini-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.9rem;}
+.mini-card{height:52px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);}
+.live-badge{margin-left:auto;display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--accent);}
+/* chat */
+.bubble{max-width:92%;padding:.75rem .95rem;border-radius:12px;font-size:.86rem;line-height:1.5;}
+.b-user{background:var(--accent-soft);border:1px solid rgba(74,222,128,.35);margin-left:auto;border-bottom-right-radius:4px;}
+.b-ai{background:var(--surface-2);border:1px solid var(--line);margin-right:auto;border-bottom-left-radius:4px;}
+.b-meta{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--violet);margin-bottom:.35rem;display:flex;gap:.7rem;flex-wrap:wrap;}
+/* project cards mock */
+.pj-card{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:1rem;height:100%;transition:border-color .25s,transform .25s;}
+.pj-card:hover{border-color:rgba(74,222,128,.5);transform:translateY(-3px);}
+.pj-id{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--muted);}
+.pj-acts i{color:var(--muted);margin-right:.7rem;font-size:.95rem;} .pj-acts i:hover{color:var(--accent);}
+.pj-new{border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:.4rem;height:100%;}
 
-        .img-placeholder { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); border-radius: .75rem; display: flex; align-items: center; justify-content: center; color: #94a3b8; }
+/* ============ Code blocks ============ */
+.codeblock{position:relative;background:#0b1120;border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.84rem;line-height:1.8;color:#dbe6f7;}
+.codeblock .c-cmd{color:#fff;} .codeblock .c-prompt{color:var(--accent);} .codeblock .c-dim{color:var(--muted);} .codeblock .c-ok{color:var(--accent);}
+.copy-btn{position:absolute;top:.55rem;right:.55rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);background:rgba(148,163,184,.08);border:1px solid var(--line);border-radius:8px;padding:.3rem .6rem;transition:all .2s;}
+.copy-btn:hover{color:var(--accent);border-color:rgba(74,222,128,.5);}
+.copy-btn.done{color:#052e16;background:var(--accent);border-color:var(--accent);}
 
-        @media (max-width: 576px) {
-            .hero-section { padding-top: 5.5rem; min-height: auto; padding-bottom: 2rem; }
-            .feature-card { padding: 1.5rem 1rem; }
-        }
-    /*autonome-guard*/
+/* ============ Tables ============ */
+.table-az{--bs-table-bg:transparent;--bs-table-color:var(--text);--bs-table-border-color:var(--line);--bs-table-hover-bg:rgba(74,222,128,.06);--bs-table-hover-color:var(--text);font-size:.9rem;margin-bottom:0;}
+.table-az th{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom-color:rgba(148,163,184,.3);}
+.table-az td{vertical-align:top;}
+.table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+
+/* ============ File tree / architecture ============ */
+.tree{font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.95;color:#dbe6f7;background:#0b1120;border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.4rem;overflow-x:auto;}
+.tree .c-dim{color:var(--muted);} .tree .c-ok{color:var(--accent);} .tree .c-vio{color:var(--violet);}
+.flow-chip{font-family:'JetBrains Mono',monospace;font-size:.74rem;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.5rem .9rem;display:inline-flex;align-items:center;gap:.5rem;}
+.flow-arrow{color:var(--accent);font-size:1.05rem;}
+
+/* ============ API chips / tips / security ============ */
+.api-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.25rem;height:100%;}
+.api-card h3{font-size:.98rem;display:flex;align-items:center;gap:.55rem;margin-bottom:.7rem;}
+.api-card h3 i{color:var(--accent);}
+.api-chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#cfe0f4;background:rgba(148,163,184,.09);border:1px solid var(--line);padding:.22rem .55rem;border-radius:7px;margin:0 .3rem .45rem 0;}
+.api-card p{color:var(--muted);font-size:.82rem;margin:.6rem 0 0;}
+.tip-card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:1.15rem 1.2rem;height:100%;transition:transform .25s,border-color .25s;}
+.tip-card:hover{transform:translateY(-4px);}
+.tip-card h3{font-size:.98rem;margin-bottom:.4rem;display:flex;gap:.6rem;align-items:center;}
+.tip-card h3 i{color:var(--accent);flex:0 0 auto;}
+.tip-card p{color:var(--muted);font-size:.87rem;margin:0;}
+.prompt-chip{cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:#cfe0f4;background:rgba(148,163,184,.09);border:1px dashed rgba(148,163,184,.4);padding:.5rem .85rem;border-radius:999px;transition:all .2s;}
+.prompt-chip:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+.sec-row{display:flex;gap:1.1rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.25rem 1.35rem;margin-bottom:.9rem;transition:border-color .25s,transform .25s;}
+.sec-row:hover{border-color:rgba(74,222,128,.5);transform:translateX(6px);}
+.sec-ico{width:44px;height:44px;flex:0 0 auto;border-radius:11px;background:var(--accent-soft);border:1px solid rgba(74,222,128,.35);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.15rem;}
+.sec-row h3{font-size:1rem;margin-bottom:.3rem;}
+.sec-row p{color:var(--muted);font-size:.9rem;margin:0;}
+
+/* ============ CTA / footer ============ */
+.cta-panel{position:relative;background:linear-gradient(150deg,#0e1728,#101b31 60%,#0d1a24);border:1px solid rgba(74,222,128,.35);border-radius:22px;overflow:hidden;}
+.cta-panel::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 50% -10%,rgba(74,222,128,.18),transparent 65%);pointer-events:none;}
+.cta-panel h2{font-size:clamp(1.9rem,4.5vw,3rem);}
+.footer-az{background:#080d18;border-top:1px solid var(--line);}
+.footer-az a{color:var(--muted);text-decoration:none;font-size:.9rem;} .footer-az a:hover{color:var(--accent);}
+.footer-az h6{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#cfe0f4;margin-bottom:1rem;}
+
+/* ============ Modals (dark) ============ */
+.modal-content{background:#0e1526;border:1px solid var(--line);color:var(--text);border-radius:16px;}
+.modal-header,.modal-footer{border-color:var(--line);}
+.modal .btn-secondary{--bs-btn-bg:rgba(148,163,184,.15);--bs-btn-border-color:rgba(148,163,184,.3);--bs-btn-hover-bg:rgba(148,163,184,.25);--bs-btn-hover-color:#fff;--bs-btn-active-bg:rgba(148,163,184,.3);}
+.modal-body .text-secondary{color:var(--muted)!important;}
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  [data-reveal]{opacity:1;transform:none;transition:none;}
+  .mq-track,.pulse-dot,.t-cursor{animation:none!important;}
+  *{transition-duration:.01ms!important;}
+}
+/*autonome-guard*/
 /* responsive safety net, keep - prevents mobile horizontal overflow */
 html{scroll-padding-top:84px;}
 html,body{overflow-x:hidden;overflow-x:clip;max-width:100%;}
@@ -76,605 +221,768 @@ img,video,iframe{max-width:100%;height:auto;}
 h1,h2,h3,h4,.display-1,.display-2,.display-3,.display-4,.display-5,.display-6{overflow-wrap:break-word;}
 </style><!--/ID:1-->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Autonome - Agentic CMS: Websites That Build Themselves">
-    <meta property="og:description" content="Autonome is a self-hosted, AI-powered website builder. Describe your site in plain language and an autonomous agent researches, designs, and writes the complete responsive website for you. No cloud, no subscriptions.">
+    <meta property="og:title" content="Autonome Agentic CMS - Websites that build themselves">
+    <meta property="og:description" content="Autonome is a self-hosted, AI-powered website builder. Describe your site in plain language and an autonomous agent researches, designs and writes the complete Bootstrap 5 page - on your own hardware, against your own LLM. No cloud, no subscriptions.">
     <meta property="og:url" content="http://localhost:8080/sites/9e85g2ooo9ljh0bu/">
 </head>
-<body class="starter-bg">
 
-<!-- Navbar -->
-<!--ID:2--><nav class="navbar navbar-expand-lg fixed-top bg-white/80 backdrop-blur-sm shadow-sm" style="backdrop-filter:blur(12px); z-index:1050;">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-            <i class="bi bi-hexagon-fill fs-4"></i> Autonome
-        </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto me-3 gap-1">
-                <li class="nav-item"><a class="nav-link nav-link-custom" href="#features">Features</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-custom" href="#how-it-works">How It Works</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-custom" href="#architecture">Architecture</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-custom" href="#api">API</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-custom" href="#tips">Tips &amp; Security</a></li>
-            </ul>
-            <div class="d-flex gap-2 flex-wrap">
-                <a href="#" class="btn btn-outline-custom btn-sm px-3 py-2">Sign In</a>
-                <a href="#" class="btn btn-primary-custom btn-sm px-3 py-2">Start Building</a>
-            </div>
-        </div>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ================= NAVBAR ================= -->
+<!--ID:2--><nav class="navbar navbar-expand-lg fixed-top navbar-az" aria-label="Main navigation">
+  <div class="container-xl">
+    <a class="navbar-brand d-flex align-items-center gap-2 me-0" href="#top" aria-label="Autonome home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 7l6 5-6 5V7z" fill="#4ade80"/><rect x="13" y="15.5" width="7" height="2.4" rx="1.2" fill="#a78bfa"/></svg>
+      </span>
+      <span>
+        <span class="brand-name d-block">Autonome</span>
+        <span class="brand-tag d-none d-sm-inline">Agentic CMS</span>
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="bi bi-list fs-2 text-light"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 pt-3 pt-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
+        <li class="nav-item d-none d-xl-inline-block nav-link"><a class="nav-link" href="#ui">UI tour</a></li>
+        <li class="nav-item d-none d-xl-inline-block nav-link"><a class="nav-link" href="#architecture">Architecture</a></li>
+        <li class="nav-item d-none d-lg-inline-block nav-link"><a class="nav-link" href="#api">API</a></li>
+        <li class="nav-item d-none d-xl-inline-block nav-link"><a class="nav-link" href="#security">Security</a></li>
+        <li class="nav-item ms-lg-2 mt-3 mt-lg-0"><a class="btn btn-accent btn-sm px-3" href="#quickstart"><i class="bi bi-terminal me-1"></i>Get started</a></li>
+      </ul>
     </div>
+  </div>
 </nav><!--/ID:2-->
 
-<!-- Hero -->
-<!--ID:5--><section class="hero-section text-center" id="top">
-    <div class="container">
-        <span class="badge-feature mb-4 d-inline-block">Self-hosted · AI-powered · Bootstrap 5</span>
-        <h1 class="mb-3">Websites that build<br><span style="color:var(--primary)">themselves.</span></h1>
-        <p class="lead text-secondary mx-auto mb-4" style="max-width:680px;">Describe your website in plain language - purpose, audience, style - and an autonomous AI agent researches the topic, designs the layout, and writes a complete responsive site. All on your own hardware.</p>
-        <!--ID:3--><div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
-            <a href="#" class="btn btn-primary-custom"><i class="bi bi-lightning-charge-fill me-2"></i>Start Building Free</a>
-            <a href="#how-it-works" class="btn btn-outline-custom"><i class="bi bi-play-circle me-2"></i>See How It Works</a>
-        </div><!--/ID:3-->
-        <!-- Hero illustration -->
-        <!--ID:4--><div class="mx-auto" style="max-width:800px;">
-            <div class="img-placeholder shadow-sm" style="height:340px; width:100%;">
-                <div class="text-center">
-                    <i class="bi bi-code-slash display-1 text-muted"></i>
-                    <p class="mt-2 mb-0 small text-muted">AI-generated index.html preview</p>
-                </div>
-            </div>
-        </div><!--/ID:4-->
+<main id="main">
+<!-- ================= HERO ================= -->
+<!--ID:5--><header class="hero" id="top">
+  <div class="container-xl">
+    <div class="row g-5 align-items-center">
+      <!--ID:3--><div class="col-lg-6" data-reveal>
+        <span class="chip chip-accent mb-3"><span class="pulse-dot"></span>Self-hosted · AI-powered website builder</span>
+        <h1>Websites that <span class="hl">build themselves.</span></h1>
+        <p class="hero-lead mb-4">Describe your site in plain language - purpose, audience, style, content. An autonomous agent researches the topic, designs and writes the complete page as a single self-contained <code class="mono" style="color:var(--accent)">index.html</code> on Bootstrap 5. It runs entirely on your own hardware against your own LLM.</p>
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <a href="#quickstart" class="btn btn-accent px-4"><i class="bi bi-play-fill me-2"></i>Get started</a>
+          <a href="#features" class="btn btn-ghost px-4"><i class="bi bi-box-seam me-2"></i>Explore the docs</a>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="chip"><i class="bi bi-hdd-network text-success"></i>No cloud</span>
+          <span class="chip"><i class="bi bi-infinity text-success"></i>No subscriptions</span>
+          <span class="chip"><i class="bi bi-shield-lock text-success"></i>Data never leaves your network</span>
+        </div>
+      </div><!--/ID:3-->
+      <!--ID:4--><div class="col-lg-6" data-reveal style="--d:.15s">
+        <div class="term" role="img" aria-label="Terminal demo: Autonome starts with the ASPPY runtime and an AI agent builds a bakery website from one prompt, producing autonome.zip.">
+          <div class="term-bar">
+            <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+            <span class="term-title">autonome - asppy · 0.0.0.0:8080</span>
+          </div>
+          <div class="term-body" id="termBody"><span class="t-cursor" aria-hidden="true"></span></div>
+        </div>
+      </div><!--/ID:4-->
     </div>
-</section><!--/ID:5-->
+  </div>
+</header><!--/ID:5-->
 
-<!--ID:6--><div class="container"><div class="section-divider"></div></div><!--/ID:6-->
+<!-- ================= MARQUEE ================= -->
+<!--ID:6--><div class="marquee" aria-label="Technology stack">
+  <div class="mq-track" id="mqTrack">
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>ASPPY runtime (Classic ASP for Python)</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>Python 3.9+</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>SQLite · app.db</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>React single-page app</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>Bootstrap 5.3 output</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>LM Studio</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>Ollama (OpenAI-compatible)</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>Anthropic API</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>Wikipedia research tools</span>
+    <span class="mq-item"><i class="bi bi-diamond-fill"></i>bcrypt sessions</span>
+  </div>
+</div><!--/ID:6-->
 
-<!-- Features -->
-<!--ID:9--><section id="features" class="py-5">
-    <div class="container py-lg-4">
-        <!--ID:7--><div class="text-center mb-5">
-            <h2 class="mb-3">Everything you need, nothing you don't</h2>
-            <p class="text-secondary mx-auto" style="max-width:600px;">Autonome is a complete agentic CMS - from AI generation to version history, multi-user isolation, and one-click downloads.</p>
-        </div><!--/ID:7-->
-        <!--ID:8--><div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-robot fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Agentic AI Generation</h5>
-                    <p class="text-secondary small mb-0">The agent doesn't just complete text - it researches your topic (optional Wikipedia tools), designs the layout, and writes a complete responsive website.</p>
-                </div>
+<!-- ================= FEATURES ================= -->
+<!--ID:9--><section class="section" id="features">
+  <div class="container-xl">
+    <!--ID:7--><div class="mb-5" data-reveal>
+      <span class="sec-kicker">01 / Features</span>
+      <h2 class="sec-title">Everything an agent should do - and nothing it shouldn't.</h2>
+      <p class="sec-sub">Autonome is a handful of files you can keep in any folder. No npm, no build step, no external tracking. Here's what that small footprint does.</p>
+    </div><!--/ID:7-->
+
+    <!--ID:8--><div class="row g-4">
+      <div class="col-lg-7" data-reveal>
+        <article class="f-card">
+          <div class="d-flex flex-column flex-md-row gap-3 align-items-start h-100">
+            <span class="f-ico"><i class="bi bi-robot"></i></span>
+            <div>
+              <h3>Agentic AI generation</h3>
+              <p>The agent doesn't just complete text. It researches your topic - optionally via Wikipedia search tools - reasons about the brief, and writes a complete, responsive website in one pass.</p>
+              <span class="f-tag">search_wikipedia · get_wikipedia_page → one html block</span>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-hdd-rack fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Your Hardware, Your Model</h5>
-                    <p class="text-secondary small mb-0">Works with LM Studio, Ollama (OpenAI-compatible endpoints), or Anthropic's API. No cloud requirement, no subscriptions.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-chat-dots fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Plain-Language Editing</h5>
-                    <p class="text-secondary small mb-0">Keep asking for changes - "make the hero full-screen", "add testimonials" - and the AI patches the page without rebuilding from scratch.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-images fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Bring Your Own Photos</h5>
-                    <p class="text-secondary small mb-0">Upload images and the AI weaves them into the design. Images wider than 1920 px are automatically resized.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-clock-history fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Version History &amp; Restores</h5>
-                    <p class="text-secondary small mb-0">A backup is created before every generation. Preview any previous version full-screen and restore with one click - restores are also backed up.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-file-earmark-zip fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Single-File Output</h5>
-                    <p class="text-secondary small mb-0">Clean, semantic, mobile-first HTML/CSS/JS on Bootstrap 5.3 with cookie notice, privacy statement, and Open Graph tags - ready to host anywhere.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-download fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Download &amp; Publish Anywhere</h5>
-                    <p class="text-secondary small mb-0">Every project downloads as a ready-to-host autonome.zip. Drop it onto any static host - Netlify, GitHub Pages, your own server.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-people fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Multi-User</h5>
-                    <p class="text-secondary small mb-0">Every user gets isolated projects and files. Admins manage the AI configuration centrally and can change user roles.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="feature-card">
-                    <i class="bi bi-gear fs-1 text-primary mb-3 d-block"></i>
-                    <h5 class="mb-2">Async Generation</h5>
-                    <p class="text-secondary small mb-0">Long builds run in the background. Leave the page or close the browser - pick it up later. Optionally get an email when it finishes.</p>
-                </div>
-            </div>
-        </div><!--/ID:8-->
-    </div>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-5" data-reveal style="--d:.08s">
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-cpu"></i></span>
+          <h3>Your hardware, your model</h3>
+          <p>Works with LM Studio or Ollama (OpenAI-compatible endpoints) on a local machine, or Anthropic's API. No cloud requirement - the only outbound call is to the endpoint you configure.</p>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4" data-reveal>
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-chat-text-dots"></i></span>
+          <h3>Plain-language editing</h3>
+          <p>After the first build, keep asking for changes - “make the hero full-screen”, “add a testimonials section”, “switch to a dark theme” - and the AI patches the page in place.</p>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.08s">
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-images"></i></span>
+          <h3>Bring your own photos</h3>
+          <p>Upload images and the AI weaves them into the design using exact relative paths. Anything wider than 1920&nbsp;px is resized automatically.</p>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.16s">
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-clock-history"></i></span>
+          <h3>Version history &amp; restores</h3>
+          <p>A backup is created before every generation. Preview any previous version full-screen and restore it with one click - restores are backed up too, so nothing is ever lost.</p>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4" data-reveal>
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-file-earmark-code"></i></span>
+          <h3>Single-file output</h3>
+          <p>Clean, semantic, mobile-first HTML/CSS/JS on Bootstrap 5.3 - with a cookie notice and privacy statement included, plus Open Graph tags injected automatically for proper link previews.</p>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.08s">
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-download"></i></span>
+          <h3>Download &amp; publish anywhere</h3>
+          <p>Every project downloads as a ready-to-host <code class="mono" style="color:var(--accent)">autonome.zip</code>. Drop it on any static host - no server, no dependencies.</p>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.16s">
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-people"></i></span>
+          <h3>Multi-user, isolated</h3>
+          <p>Every user gets their own projects and files. Admins manage the AI configuration centrally and can promote or demote roles.</p>
+        </article>
+      </div>
+
+      <div class="col-lg-6" data-reveal>
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-hourglass-split"></i></span>
+          <h3>Async generation</h3>
+          <p>Long builds run in a detached background worker. Leave the page or close the browser - the job continues, you can re-attach when you return, and optionally get an email when it finishes.</p>
+        </article>
+      </div>
+      <div class="col-lg-6" data-reveal style="--d:.08s">
+        <article class="f-card">
+          <span class="f-ico"><i class="bi bi-shield-lock"></i></span>
+          <h3>Self-contained &amp; private</h3>
+          <p>A single folder of files served by the ASPPY runtime. No npm, no build step, no external tracking - and a broken AI response can never overwrite your site.</p>
+        </article>
+      </div>
+    </div><!--/ID:8-->
+  </div>
 </section><!--/ID:9-->
 
-<!--ID:10--><div class="container"><div class="section-divider"></div></div><!--/ID:10-->
-
-<!-- How It Works -->
-<!--ID:14--><section id="how-it-works" class="py-5 bg-white">
-    <div class="container py-lg-4">
-        <!--ID:11--><div class="text-center mb-5">
-            <h2 class="mb-3">How a generation works</h2>
-            <p class="text-secondary mx-auto" style="max-width:600px;">From prompt to published site in four simple steps.</p>
-        </div><!--/ID:11-->
-        <!--ID:12--><div class="row g-4 align-items-start">
-            <div class="col-md-6 col-lg-3 text-center">
-                <div class="step-number mx-auto mb-3">1</div>
-                <h5 class="mb-2">Describe your site</h5>
-                <p class="text-secondary small mb-0">Tell the agent what you want - goal, audience, colors, style. Upload photos for best results.</p>
+<!-- ================= HOW IT WORKS ================= -->
+<!--ID:12--><section class="section" id="how" style="background:var(--bg-2);border-block:1px solid var(--line);">
+  <div class="container-xl">
+    <div class="row g-5">
+      <!--ID:10--><div class="col-lg-4">
+        <div class="sticky-col" data-reveal>
+          <span class="sec-kicker">02 / Pipeline</span>
+          <h2 class="sec-title">How a generation works</h2>
+          <p class="sec-sub mb-4">From prompt to page in six moves. The agent may call tools and reason along the way - but it always ends by writing exactly one fenced <code class="mono" style="color:var(--accent)">html</code> block, which the server validates before anything is saved.</p>
+          <div class="card border-0 shadow-sm" style="background:var(--surface);border:1px solid var(--line);border-radius:14px;">
+            <div class="card-body">
+              <h3 class="fs-6 mb-2"><i class="bi bi-x-octagon text-danger me-2"></i>Cancel anytime</h3>
+              <p class="small mb-0" style="color:var(--muted)">A running generation can be cancelled - any partial result is discarded and nothing is written. Navigate away mid-build and the app re-attaches to the still-running job when you come back.</p>
             </div>
-            <div class="col-md-6 col-lg-3 text-center">
-                <div class="step-number mx-auto mb-3">2</div>
-                <h5 class="mb-2">AI researches &amp; builds</h5>
-                <p class="text-secondary small mb-0">The agent may search Wikipedia, reason about your topic, and writes exactly one complete HTML document.</p>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center">
-                <div class="step-number mx-auto mb-3">3</div>
-                <h5 class="mb-2">Validate &amp; backup</h5>
-                <p class="text-secondary small mb-0">The server validates the HTML, cleans paths, injects OG tags, and backs up the previous version.</p>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center">
-                <div class="step-number mx-auto mb-3">4</div>
-                <h5 class="mb-2">Refine or download</h5>
-                <p class="text-secondary small mb-0">Keep asking for changes in plain language, preview live, or download the complete site as a zip.</p>
-            </div>
-        </div><!--/ID:12-->
-
-        <!-- Code example -->
-        <!--ID:13--><div class="mt-5 pt-4">
-            <h3 class="text-center mb-4">Quick start</h3>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <p class="text-secondary small mb-2">Install ASPPY and serve the app folder:</p>
-                    <div class="code-block">
-                        pip install asppy<br><br>
-                        asppy 0.0.0.0 8080 www
-                    </div>
-                    <p class="text-secondary small mt-3 mb-0">Open <code class="bg-light px-2 py-1 rounded">http://localhost:8080</code>, sign in with admin / admin123, configure your LLM endpoint, and start building.</p>
-                </div>
-            </div>
-        </div><!--/ID:13-->
+          </div>
+        </div>
+      </div><!--/ID:10-->
+      <!--ID:11--><div class="col-lg-8">
+        <div class="step" data-reveal><span class="step-num">01</span>
+          <div class="step-card"><h3>You submit a prompt</h3><p>Type your request in the chat - optionally after uploading photos. Enter sends; Shift+Enter inserts a newline.</p></div>
+        </div>
+        <div class="step" data-reveal style="--d:.05s"><span class="step-num">02</span>
+          <div class="step-card"><h3>A job is created</h3><p>If the server supports it, a detached worker runs the build in the background; otherwise it runs synchronously. The UI polls for status every few seconds and shows “AI is building your website”.</p></div>
+        </div>
+        <div class="step" data-reveal style="--d:.1s"><span class="step-num">03</span>
+          <div class="step-card"><h3>The agent builds the full prompt</h3><p>Your request, the project name, the current <code class="mono" style="color:var(--accent)">index.html</code> (so it improves rather than rebuilds), your image paths, the last 5 prompts as context - and Wikipedia tools if enabled. It may call tools, reason, then write one fenced html block.</p></div>
+        </div>
+        <div class="step" data-reveal style="--d:.15s"><span class="step-num">04</span>
+          <div class="step-card"><h3>The server validates &amp; cleans</h3><p>The answer must be a complete HTML document. Long dashes are replaced, image paths made relative, internal block-ID markers stripped and re-numbered, a responsive safety net (viewport meta + overflow guards) and Open Graph tags injected - then the previous version is backed up to <code class="mono" style="color:var(--accent)">backups/&lt;timestamp&gt;/</code>.</p></div>
+        </div>
+        <div class="step" data-reveal style="--d:.2s"><span class="step-num">05</span>
+          <div class="step-card"><h3>The new page is written</h3><p>Your fresh <code class="mono" style="color:var(--accent)">index.html</code> lands and the preview refreshes. Keep refining in plain language, or roll back via History.</p></div>
+        </div>
+        <div class="step" data-reveal style="--d:.25s"><span class="step-num">06</span>
+          <div class="step-card"><h3>Failures are contained</h3><p>A broken or incomplete page triggers up to 3 retries with adaptive “repair” hints; otherwise your site is left untouched and the error explained. Truncated answers (<code class="mono" style="color:var(--accent)">finish_reason = length</code>) come with a hint to raise <code class="mono" style="color:var(--accent)">max_tokens</code>.</p></div>
+        </div>
+      </div><!--/ID:11-->
     </div>
-</section><!--/ID:14-->
+  </div>
+</section><!--/ID:12-->
 
-<!--ID:15--><div class="container"><div class="section-divider"></div></div><!--/ID:15-->
+<!-- ================= UI TOUR ================= -->
+<!--ID:15--><section class="section" id="ui">
+  <div class="container-xl">
+    <!--ID:13--><div class="mb-4" data-reveal>
+      <span class="sec-kicker">03 / User interface</span>
+      <h2 class="sec-title">A single-page app, four rooms.</h2>
+      <p class="sec-sub">All navigation happens through URL fragments (<code class="mono">#/…</code>). The public landing page explains Autonome; everything else lives behind a session - the dashboard, the workspace where you talk to the agent, and the admin panel.</p>
+    </div><!--/ID:13-->
 
-<!-- Architecture -->
-<!--ID:19--><section id="architecture" class="py-5">
-    <div class="container py-lg-4">
-        <!--ID:16--><div class="text-center mb-5">
-            <h2 class="mb-3">Architecture &amp; file layout</h2>
-            <p class="text-secondary mx-auto" style="max-width:600px;">A handful of files. Self-hosted on ASPPY (Classic ASP/VBScript runtime for Python). No npm, no build step.</p>
-        </div><!--/ID:16-->
+    <ul class="nav nav-tabs-az" id="uiTabs" role="tablist" data-reveal>
+      <li class="nav-item" role="presentation"><button class="nav-link active" id="tab-ws" data-bs-toggle="tab" data-bs-target="#pane-ws" type="button" role="tab" aria-controls="pane-ws" aria-selected="true"><i class="bi bi-window-split"></i>Project workspace</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" id="tab-dash" data-bs-toggle="tab" data-bs-target="#pane-dash" type="button" role="tab" aria-controls="pane-dash" aria-selected="false"><i class="bi bi-grid-1x2"></i>Dashboard</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" id="tab-auth" data-bs-toggle="tab" data-bs-target="#pane-auth" type="button" role="tab" aria-controls="pane-auth" aria-selected="false"><i class="bi bi-person-badge"></i>Auth &amp; account</button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" id="tab-admin" data-bs-toggle="tab" data-bs-target="#pane-admin" type="button" role="tab" aria-controls="pane-admin" aria-selected="false"><i class="bi bi-gear"></i>Admin panel</button></li>
+    </ul>
 
-        <!--ID:17--><div class="row g-4 align-items-start">
-            <div class="col-lg-5">
-                <div class="feature-card h-100">
-                    <h5 class="mb-3"><i class="bi bi-folder2-open me-2 text-primary"></i>Project folder structure</h5>
-                    <pre class="code-block mb-0" style="background:transparent; padding:0; font-size:.8rem;"><span style="color:#a78bfa">autonome/</span>
-├── app.db              <span style="color:#94a3b8"># SQLite database</span>
-├── index.html          <span style="color:#94a3b8"># React SPA UI</span>
-├── script.js           <span style="color:#94a3b8"># React logic</span>
-├── style.css           <span style="color:#94a3b8"># UI styling</span>
-├── api.asp             <span style="color:#94a3b8"># REST JSON API</span>
-├── favicon.ico
-├── robots.txt
+    <!--ID:14--><div class="tab-content tab-pane-az">
+      <!-- Workspace -->
+      <div class="tab-pane fade show active" id="pane-ws" role="tabpanel" aria-labelledby="tab-ws">
+        <p class="sec-sub mb-4">The workspace (<code class="mono">#/project/&lt;id&gt;</code>) is a split screen: live preview on the left, the AI Builder chat on the right. Uploaded photos appear as a thumbnail strip above the preview - hover one to delete it.</p>
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6" data-reveal>
+            <div class="mock h-100">
+              <div class="mock-bar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="url-pill">http://localhost:8080/sites/a3f9c2e8b7d41056/</span>
+                <button class="btn btn-sm p-0 ms-2" style="color:var(--muted)" aria-label="Copy site URL"><i class="bi bi-link-45deg"></i></button>
+                <button class="btn btn-sm p-0" style="color:var(--muted)" aria-label="Refresh preview"><i class="bi bi-arrow-clockwise"></i></button>
+                <span class="live-badge"><span class="pulse-dot"></span>LIVE</span>
+              </div>
+              <div class="mock-body">
+                <div class="mini-nav"></div>
+                <div class="mini-hero">
+                  <div class="mini-line w80" style="height:14px;background:rgba(231,237,248,.75)"></div>
+                  <div class="mini-line w60"></div><div class="mini-line w40"></div>
+                </div>
+                <div class="mini-cards"><div class="mini-card"></div><div class="mini-card"></div><div class="mini-card"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-reveal style="--d:.1s">
+            <div class="mock h-100 d-flex flex-column">
+              <div class="mock-bar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="url-pill" style="margin-left:0">AI Builder - chat</span></div>
+              <div class="mock-body d-flex flex-column gap-3 flex-grow-1">
+                <div class="bubble b-user">Make the hero full-screen and add opening hours below it.</div>
+                <div class="bubble b-ai"><div class="b-meta"><span><i class="bi bi-cpu"></i> 🧠 thinking</span><span>6.4 s</span><span>2,310 tok</span><span>358 t/s</span></div>Done - the hero is now full-viewport with a soft fade, and I added an opening-hours table under the menu.</div>
+                <div class="bubble b-user">Switch to a dark theme.</div>
+                <div class="bubble b-ai"><div class="b-meta"><span><i class="bi bi-cpu"></i> 🧠 thinking</span><span>4.1 s</span><span>1,860 tok</span><span>312 t/s</span></div>Rethemed - deep charcoal base with a warm amber accent. Your photos and layout are untouched.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-7" data-reveal>
+            <h3 class="fs-6 mb-3"><i class="bi bi-ui-checks me-2 text-success"></i>Header actions</h3>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="chip"><i class="bi bi-arrow-counterclockwise"></i>Reset - wipe site, history &amp; backups (photos kept)</span>
+              <span class="chip"><i class="bi bi-clock-history"></i>History</span>
+              <span class="chip"><i class="bi bi-box-arrow-up-right"></i>Open site in new tab</span>
+              <span class="chip"><i class="bi bi-download"></i>Download autonome.zip</span>
+              <span class="chip chip-accent"><i class="bi bi-image-plus"></i>Upload images - jpg · png · gif · webp · bmp · avif</span>
+            </div>
+          </div>
+          <div class="col-lg-5" data-reveal style="--d:.1s">
+            <h3 class="fs-6 mb-3"><i class="bi bi-lightbulb me-2 text-success"></i>Suggestions &amp; notifications</h3>
+            <p class="small mb-0" style="color:var(--muted)">“Suggest improvement” opens starter prompts on a fresh project, or grouped ideas (tone, theme, layout, colors, content structure) on an existing one. Tick “Email me when the generation is complete” for a notification email per build.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard -->
+      <div class="tab-pane fade" id="pane-dash" role="tabpanel" aria-labelledby="tab-dash">
+        <p class="sec-sub mb-4">The dashboard lists every project you own, most recently updated first. Click a card to open its workspace.</p>
+        <div class="row g-4 mb-4">
+          <div class="col-md-6 col-lg-3" data-reveal><div class="pj-card"><h3 class="fs-6 mb-1">Corner Bakery</h3><span class="pj-id">a3f9c2e8b7d41056</span><p class="small mt-2 mb-2" style="color:var(--muted)">Updated 2 h ago · 14 versions</p><div class="pj-acts"><i class="bi bi-pencil-square" title="Rename"></i><i class="bi bi-copy" title="Copy project"></i><i class="bi bi-journal-text" title="Notes"></i><i class="bi bi-trash3" title="Delete"></i></div></div></div>
+          <div class="col-md-6 col-lg-3" data-reveal style="--d:.07s"><div class="pj-card"><h3 class="fs-6 mb-1">Portfolio - J. Meier</h3><span class="pj-id">9c2e77ab04f1d83a</span><p class="small mt-2 mb-2" style="color:var(--muted)">Updated yesterday · 6 versions</p><div class="pj-acts"><i class="bi bi-pencil-square"></i><i class="bi bi-copy"></i><i class="bi bi-journal-text"></i><i class="bi bi-trash3"></i></div></div></div>
+          <div class="col-md-6 col-lg-3" data-reveal style="--d:.14s"><div class="pj-card"><h3 class="fs-6 mb-1">Docs site</h3><span class="pj-id">5b0d1f9e2c7a8463</span><p class="small mt-2 mb-2" style="color:var(--muted)">Updated 3 d ago · 2 versions</p><div class="pj-acts"><i class="bi bi-pencil-square"></i><i class="bi bi-copy"></i><i class="bi bi-journal-text"></i><i class="bi bi-trash3"></i></div></div></div>
+          <div class="col-md-6 col-lg-3" data-reveal style="--d:.21s"><div class="pj-card pj-new"><i class="bi bi-plus-circle fs-3 text-success"></i><span class="fs-6">+ New Project</span><span class="small">own URL + starter page, instantly</span></div></div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-6" data-reveal>
+            <h3 class="fs-6 mb-3"><i class="bi bi-collection me-2 text-success"></i>Per-project actions</h3>
+            <ul class="list-unstyled small mb-0" style="color:var(--muted)">
+              <li class="mb-2"><strong class="text-light">Open workspace</strong> - click the project card.</li>
+              <li class="mb-2"><strong class="text-light">Rename</strong> - change the display name (the URL never changes).</li>
+              <li class="mb-2"><strong class="text-light">Copy</strong> - duplicate website files, photos and prompt/chat history; backups are not copied.</li>
+              <li class="mb-2"><strong class="text-light">Notes</strong> - attach a free-text note to the project.</li>
+              <li><strong class="text-danger">Delete</strong> - remove permanently: all files, backups and history.</li>
+            </ul>
+          </div>
+          <div class="col-lg-6" data-reveal style="--d:.1s">
+            <h3 class="fs-6 mb-3"><i class="bi bi-key me-2 text-success"></i>Stable, private URLs</h3>
+            <p class="small mb-0" style="color:var(--muted)">Each project lives in a folder with a random 16-character name generated at creation - never derived from the project name or username. URLs stay stable and identities are never leaked into paths.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auth & account -->
+      <div class="tab-pane fade" id="pane-auth" role="tabpanel" aria-labelledby="tab-auth">
+        <div class="row g-4 mb-4">
+          <div class="col-md-4" data-reveal><article class="f-card"><span class="f-ico"><i class="bi bi-box-arrow-in-right"></i></span><h3>Sign in</h3><p>Existing username + password. Admins are routed to the Admin panel automatically; everyone else lands on the Dashboard.</p></article></div>
+          <div class="col-md-4" data-reveal style="--d:.08s"><article class="f-card"><span class="f-ico"><i class="bi bi-person-plus"></i></span><h3>Register free</h3><p>Username (plain ASCII), a valid email, and a password of at least 6 characters. New accounts are regular users - not admins.</p></article></div>
+          <div class="col-md-4" data-reveal style="--d:.16s"><article class="f-card"><span class="f-ico"><i class="bi bi-envelope-at"></i></span><h3>Forgot password?</h3><p>Enter your email; if it's registered (and SMTP is configured) a reset link - valid for 1 hour - is emailed to you. The response is intentionally neutral so addresses can't be probed.</p></article></div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-6" data-reveal>
+            <div class="card border-0 shadow-sm h-100" style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.4);border-radius:14px;">
+              <div class="card-body">
+                <h3 class="fs-6 mb-3"><i class="bi bi-exclamation-triangle text-warning me-2"></i>First login - default admin</h3>
+                <div class="table-responsive">
+                  <table class="table table-sm table-az align-middle" style="--bs-table-border-color:rgba(251,191,36,.25);">
+                    <thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead>
+                    <tbody><tr><td class="mono">Username</td><td class="mono" style="color:var(--amber)">admin</td></tr>
+                    <tr><td class="mono">Password</td><td class="mono" style="color:var(--amber)">admin123</td></tr></tbody>
+                  </table>
+                </div>
+                <p class="small mb-0 mt-3" style="color:var(--muted)"><i class="bi bi-shield-exclamation me-1"></i>The default account is created on first run and is widely known. Change it right away (Account → Change password).</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-reveal style="--d:.1s">
+            <h3 class="fs-6 mb-3"><i class="bi bi-person-gear me-2 text-success"></i>Your account page</h3>
+            <ul class="list-unstyled small mb-0" style="color:var(--muted)">
+              <li class="mb-2"><strong class="text-light">Update email</strong> - enter the new address and confirm with your current password.</li>
+              <li><strong class="text-light">Change password</strong> - current password + new password (min. 6 characters) + confirmation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin -->
+      <div class="tab-pane fade" id="pane-admin" role="tabpanel" aria-labelledby="tab-admin">
+        <p class="sec-sub mb-4">Only administrators see the Admin tab. Three panels: LLM configuration, email settings, and user management.</p>
+        <h3 class="fs-6 mb-3"><i class="bi bi-cpu me-2 text-success"></i>LLM configuration</h3>
+        <div class="table-wrap table-responsive mb-4" data-reveal>
+          <table class="table table-az">
+            <thead><tr><th scope="col" style="width:180px;">Setting</th><th scope="col">Description</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">LLM Endpoint URL</td><td>Base URL of your LM Studio / Ollama server, e.g. <code class="mono" style="color:var(--accent)">http://localhost:1234</code>. OpenAI-compatible.</td></tr>
+              <tr><td class="mono">API Key</td><td>Needed for LM Studio remote access (and any OpenAI/Anthropic key).</td></tr>
+              <tr><td class="mono">Model Name</td><td>Click ↻ Models to fetch the list from the endpoint (OpenAI <code class="mono">/v1/models</code>; Anthropic returns a curated list). Or type one manually with the ✎ Edit toggle.</td></tr>
+              <tr><td class="mono">Wikipedia tools</td><td>On/off - lets the AI research topics via <code class="mono">search_wikipedia</code> / <code class="mono">get_wikipedia_page</code> while building.</td></tr>
+              <tr><td class="mono">System Prompt</td><td>Optional extra instructions prepended to every generation.</td></tr>
+              <tr><td class="mono">Extra LLM Parameters</td><td>Optional JSON, e.g. <code class="mono" style="color:var(--accent)">{"temperature": 0.7, "max_tokens": 8192}</code>.</td></tr>
+              <tr><td class="mono">Internal URL</td><td>The address the app uses to reach itself for the async worker (bypasses a reverse proxy). Must match the port ASPPY listens on - e.g. <code class="mono" style="color:var(--accent)">http://127.0.0.1:8058</code> behind IIS ARR.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-6" data-reveal>
+            <h3 class="fs-6 mb-3"><i class="bi bi-envelope me-2 text-success"></i>Email settings</h3>
+            <ul class="list-unstyled small mb-0" style="color:var(--muted)">
+              <li class="mb-2"><strong class="text-light">SMTP server</strong> - host, port (25 · 465 SSL · 587 STARTTLS), login, password, SSL/TLS toggle and From address.</li>
+              <li class="mb-2"><strong class="text-light">Public URL of this app</strong> - used to build links inside emails. Default <code class="mono" style="color:var(--accent)">http://localhost:8080</code>.</li>
+              <li class="mb-2"><strong class="text-light">Password reset email</strong> - subject + body template with placeholders <span class="api-chip">{username}</span><span class="api-chip">{link}</span></li>
+              <li><strong class="text-light">Generation finished email</strong> - subject + body template with <span class="api-chip">{username}</span><span class="api-chip">{project}</span><span class="api-chip">{status}</span><span class="api-chip">{link}</span></li>
+            </ul>
+            <p class="small mt-3 mb-0" style="color:var(--muted)"><i class="bi bi-info-circle me-1"></i>Emails are only sent for the password-reset flow and when a user ticks “Email me when the generation is complete”.</p>
+          </div>
+          <div class="col-lg-6" data-reveal style="--d:.1s">
+            <h3 class="fs-6 mb-3"><i class="bi bi-people me-2 text-success"></i>Users</h3>
+            <div class="table-wrap table-responsive">
+              <table class="table table-sm table-az">
+                <thead><tr><th scope="col">Username</th><th scope="col">Email</th><th scope="col">Role</th><th scope="col">Created</th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">admin</td><td style="color:var(--muted)">root@local</td><td><span class="chip chip-accent" style="font-size:.62rem;">admin</span></td><td class="mono" style="color:var(--muted)">2026-09-16</td></tr>
+                  <tr><td class="mono">jmeier</td><td style="color:var(--muted)">j@local</td><td><span class="chip" style="font-size:.62rem;">user</span></td><td class="mono" style="color:var(--muted)">2026-09-14</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small mt-3 mb-0" style="color:var(--muted)"><i class="bi bi-arrow-left-right me-1"></i>Promote users to admin, or demote them back - one click per row.</p>
+          </div>
+        </div>
+      </div>
+    </div><!--/ID:14-->
+  </div>
+</section><!--/ID:15-->
+
+<!-- ================= QUICKSTART ================= -->
+<!--ID:18--><section class="section" id="quickstart" style="background:var(--bg-2);border-block:1px solid var(--line);">
+  <div class="container-xl">
+    <!--ID:16--><div class="mb-5" data-reveal>
+      <span class="sec-kicker">04 / Quick start</span>
+      <h2 class="sec-title">From zero to first site in three steps.</h2>
+      <p class="sec-sub">The whole application is a handful of files you can keep in any folder - the <code class="mono">www</code> folder in this project is just one example. The database is created automatically on the first request. No setup step needed.</p>
+    </div><!--/ID:16-->
+
+    <!--ID:17--><div class="row g-4">
+      <div class="col-lg-4" data-reveal>
+        <article class="f-card h-100">
+          <span class="f-ico"><i class="bi bi-download"></i></span>
+          <h3><span class="mono text-success me-2">STEP 1</span>Install the runtime</h3>
+          <p class="mb-3">Python 3.9+ on Windows, Linux or macOS - then ASPPY from pip. The ASPPY source folder is not included with, or needed by, this app.</p>
+          <div class="codeblock mb-2"><button class="copy-btn" data-copy="pip install asppy" aria-label="Copy command">copy</button><span class="c-prompt">$ </span><span class="c-cmd">pip install asppy</span></div>
+          <p class="small mb-0" style="color:var(--muted)">You'll also need an LLM endpoint (local LM Studio / Ollama, or an Anthropic key) and - optionally - an SMTP account for emails.</p>
+        </article>
+      </div>
+      <div class="col-lg-4" data-reveal style="--d:.1s">
+        <article class="f-card h-100">
+          <span class="f-ico"><i class="bi bi-terminal"></i></span>
+          <h3><span class="mono text-success me-2">STEP 2</span>Serve the app folder</h3>
+          <p class="mb-3">Point the docroot argument at whatever folder contains the app files - any name, anywhere:</p>
+          <div class="codeblock mb-2"><button class="copy-btn" data-copy="asppy 0.0.0.0 8080 www" aria-label="Copy command">copy</button><span class="c-dim"># Usage: asppy [host] [port] [docroot]</span>
+<span class="c-prompt">$ </span><span class="c-cmd">asppy 0.0.0.0 8080 www</span></div>
+          <p class="small mb-0" style="color:var(--muted)">On Windows, double-click <code class="mono">start_www.bat</code> - it frees port 8080, starts the server and opens your browser. In a source checkout the equivalent is <code class="mono">python ASPPY/server.py …</code>; after pip install, <code class="mono">asppy</code> alone is enough.</p>
+        </article>
+      </div>
+      <div class="col-lg-4" data-reveal style="--d:.2s">
+        <article class="f-card h-100">
+          <span class="f-ico"><i class="bi bi-person-check"></i></span>
+          <h3><span class="mono text-success me-2">STEP 3</span>Log in &amp; configure</h3>
+          <p class="mb-3">Open <a href="#" onclick="return false;">http://localhost:8080</a>, sign in with the default admin, change that password, then set your LLM endpoint in the Admin panel.</p>
+          <div class="codeblock mb-2"><button class="copy-btn" data-copy="admin / admin123" aria-label="Copy credentials">copy</button><span class="c-dim"># default administrator (change it!)</span>
+<span class="c-prompt">&gt; </span><span class="c-cmd">username: admin</span>
+<span class="c-prompt">&gt; </span><span class="c-cmd">password: <span style="color:var(--amber)">admin123</span></span></div>
+          <p class="small mb-0" style="color:var(--muted)">Then: Dashboard → + New Project → describe your site in plain language. Other users can register their own accounts from the sign-in page.</p>
+        </article>
+      </div>
+    </div><!--/ID:17-->
+  </div>
+</section><!--/ID:18-->
+
+<!-- ================= ARCHITECTURE ================= -->
+<!--ID:21--><section class="section" id="architecture">
+  <div class="container-xl">
+    <div class="row g-5 align-items-start">
+      <!--ID:19--><div class="col-lg-6" data-reveal>
+        <span class="sec-kicker">05 / Architecture</span>
+        <h2 class="sec-title mb-3">Where files are stored</h2>
+        <p class="sec-sub mb-4">Everything lives inside the app folder you serve with ASPPY. The UI is a React single-page app; the backend is one REST JSON API backed by SQLite.</p>
+        <div class="tree" role="img" aria-label="File tree of an Autonome installation: app.db, index.html, script.js, style.css, api.asp, favicon.ico, robots.txt and a sites folder containing per-project folders with index.html, img and backups.">
+<span class="c-vio">&lt;app-folder&gt;/</span>
+├── <span class="c-ok">app.db</span>            <span class="c-dim"># SQLite: users, projects, config, jobs, chat…</span>
+├── <span class="c-ok">index.html</span>        <span class="c-dim"># the Autonome SPA (login, dashboard, admin)</span>
+├── <span class="c-ok">script.js</span>         <span class="c-dim"># React UI code</span>
+├── <span class="c-ok">style.css</span>         <span class="c-dim"># UI styling</span>
+├── <span class="c-ok">api.asp</span>           <span class="c-dim"># REST JSON API - all actions</span>
+├── favicon.ico       <span class="c-dim"># copied into every new project folder</span>
+├── robots.txt        <span class="c-dim"># copied into every new project folder</span>
 └── sites/
-    └── &lt;random-16-char&gt;/   <span style="color:#94a3b8"># One folder per project</span>
-        ├── index.html      <span style="color:#94a3b8"># Generated site</span>
-        ├── img/            <span style="color:#94a3b8"># Uploaded photos</span>
+    └── &lt;random-16-char&gt;/   <span class="c-dim"># one folder per project - never a username</span>
+        ├── index.html      <span class="c-dim"># the generated website (only file AI writes)</span>
+        ├── img/            <span class="c-dim"># uploaded photos, resized to max 1920 px</span>
         └── backups/
-            └── &lt;timestamp&gt;/  <span style="color:#94a3b8"># Version history</span></pre>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="feature-card h-100">
-                    <h5 class="mb-3"><i class="bi bi-diagram-3 me-2 text-primary"></i>How it connects</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li class="d-flex align-items-start gap-3 mb-3 pb-3 border-bottom">
-                            <i class="bi bi-browser-chrome fs-4 text-primary mt-1"></i>
-                            <div><strong>React SPA</strong> - The browser loads index.html + script.js. All navigation is client-side via URL fragments (#/...).</div>
-                        </li>
-                        <li class="d-flex align-items-start gap-3 mb-3 pb-3 border-bottom">
-                            <i class="bi bi-server fs-4 text-primary mt-1"></i>
-                            <div><strong>ASPPY Runtime</strong> - Serves static files and routes API calls to api.asp (Classic ASP on Python).</div>
-                        </li>
-                        <li class="d-flex align-items-start gap-3 mb-3 pb-3 border-bottom">
-                            <i class="bi bi-database fs-4 text-primary mt-1"></i>
-                            <div><strong>SQLite (app.db)</strong> - Stores users, projects, config, jobs, chat history. Created automatically on first request.</div>
-                        </li>
-                        <li class="d-flex align-items-start gap-3">
-                            <i class="bi bi-cpu fs-4 text-primary mt-1"></i>
-                            <div><strong>LLM Endpoint</strong> - Your local LM Studio / Ollama server or Anthropic API. The agent sends prompts and receives complete HTML.</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div><!--/ID:17-->
-
-        <!-- Tech badges -->
-        <!--ID:18--><div class="text-center mt-5">
-            <p class="text-secondary small mb-3">Built with</p>
-            <div class="d-flex flex-wrap justify-content-center gap-2">
-                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-filetype-py me-1"></i>Python 3.9+</span>
-                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-box me-1"></i>ASPPY</span>
-                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-database me-1"></i>SQLite</span>
-                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-filetype-js me-1"></i>React SPA</span>
-                <span class="badge bg-light text-dark border px-3 py-2"><i class="bi bi-filetype-html me-1"></i>Bootstrap 5.3</span>
-            </div>
-        </div><!--/ID:18-->
+            └── &lt;timestamp&gt;/    <span class="c-dim"># copy of the site before each generation/restore</span>
+        </div>
+      </div><!--/ID:19-->
+      <!--ID:20--><div class="col-lg-6" data-reveal style="--d:.12s">
+        <h3 class="fs-5 mb-4"><i class="bi bi-diagram-3 me-2 text-success"></i>The whole stack, in one line</h3>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-4" aria-label="Data flow: React SPA sends REST JSON to api.asp which reads and writes SQLite app.db and the sites folder">
+          <span class="flow-chip"><i class="bi bi-window text-success"></i>React SPA</span><span class="flow-arrow" aria-hidden="true"><i class="bi bi-arrow-right"></i></span>
+          <span class="flow-chip"><i class="bi bi-plug text-success"></i>REST JSON → api.asp</span><span class="flow-arrow" aria-hidden="true"><i class="bi bi-arrow-right"></i></span>
+          <span class="flow-chip"><i class="bi bi-database text-success"></i>app.db + sites/</span>
+        </div>
+        <div class="d-flex flex-column gap-3">
+          <div class="sec-row" style="margin-bottom:0;"><span class="sec-ico"><i class="bi bi-folder2-open"></i></span><div><h3>A handful of files, any folder</h3><p>The app is just the files above. Keep them in <code class="mono">www</code>, <code class="mono">autonome</code> or wherever - ASPPY only needs a docroot path.</p></div></div>
+          <div class="sec-row" style="margin-bottom:0;"><span class="sec-ico"><i class="bi bi-shuffle"></i></span><div><h3>Random 16-char project IDs</h3><p>Project folder names are generated at creation and never derived from the name or username - URLs stay stable and identities don't leak into paths.</p></div></div>
+          <div class="sec-row" style="margin-bottom:0;"><span class="sec-ico"><i class="bi bi-clock-history"></i></span><div><h3>A backup before every change</h3><p>Before each generation - and before each restore - the current site is copied to <code class="mono">backups/&lt;timestamp&gt;/</code>. Nothing is ever lost.</p></div></div>
+          <div class="sec-row" style="margin-bottom:0;"><span class="sec-ico"><i class="bi bi-file-earmark-lock"></i></span><div><h3>The AI only writes index.html</h3><p><code class="mono">ValidateFileExtension</code> refuses any other filename in AI output, and every document must pass a structural completeness check before it's saved.</p></div></div>
+        </div>
+      </div><!--/ID:20-->
     </div>
-</section><!--/ID:19-->
+  </div>
+</section><!--/ID:21-->
 
-<!--ID:20--><div class="container"><div class="section-divider"></div></div><!--/ID:20-->
-
-<!-- UI Walkthrough -->
-<!--ID:24--><section id="ui" class="py-5 bg-white">
-    <div class="container py-lg-4">
-        <!--ID:21--><div class="text-center mb-5">
-            <h2 class="mb-3">The user interface</h2>
-            <p class="text-secondary mx-auto" style="max-width:600px;">A clean, modern single-page app with login, dashboard, admin panel, and the AI Builder workspace.</p>
-        </div><!--/ID:21-->
-
-        <!-- Workspace split view -->
-        <!--ID:22--><div class="row justify-content-center mb-5">
-            <div class="col-lg-10">
-                <div class="feature-card p-0 overflow-hidden">
-                    <div class="bg-dark text-white px-3 py-2 d-flex align-items-center gap-2" style="font-size:.75rem;">
-                        <span class="rounded-circle bg-danger" style="width:10px;height:10px;display:inline-block;"></span>
-                        <span class="rounded-circle bg-warning" style="width:10px;height:10px;display:inline-block;"></span>
-                        <span class="rounded-circle bg-success" style="width:10px;height:10px;display:inline-block;"></span>
-                        <span class="ms-2 text-muted">Project Workspace - Split View</span>
-                    </div>
-                    <div class="row g-0">
-                        <div class="col-md-6 border-end">
-                            <div class="img-placeholder" style="height:300px; width:100%; background:linear-gradient(135deg,#f1f5f9,#e2e8f0);">
-                                <div class="text-center">
-                                    <i class="bi bi-eye fs-1 text-muted"></i>
-                                    <p class="mt-2 mb-0 small text-muted">Live Preview (iframe)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 d-flex flex-column" style="background:#f8fafc;">
-                            <div class="px-3 py-2 border-bottom d-flex align-items-center gap-2">
-                                <i class="bi bi-robot text-primary"></i>
-                                <span class="fw-semibold small">AI Builder Chat</span>
-                            </div>
-                            <div class="flex-grow-1 p-3 overflow-auto" style="min-height:200px;">
-                                <div class="mb-3">
-                                    <div class="bg-white rounded-pill px-3 py-2 shadow-sm d-inline-block text-start" style="max-width:85%;">
-                                        <small class="text-secondary">Build a modern portfolio site for a photographer with dark theme and gallery grid</small>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="bg-primary text-white rounded-pill px-3 py-2 shadow-sm d-inline-block text-start" style="max-width:90%;">
-                                        <small><i class="bi bi-robot me-1"></i>🧠 thinking... Building complete responsive portfolio with Bootstrap 5. Dark theme, masonry gallery, contact form.</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-3 border-top">
-                                <div class="input-group">
-                                    <input type="text" class="form-control rounded-pill" placeholder="Ask for changes..." disabled aria-label="AI prompt input">
-                                    <button class="btn btn-primary-custom px-4" disabled><i class="bi bi-send-fill"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/ID:22-->
-
-        <!-- UI sections grid -->
-        <!--ID:23--><div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="feature-card text-center h-100">
-                    <i class="bi bi-box-seam fs-2 text-primary mb-2 d-block"></i>
-                    <h6>Landing Page</h6>
-                    <p class="text-secondary small mb-0">Public homepage explaining Autonome. Sign in or start building.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="feature-card text-center h-100">
-                    <i class="bi bi-person-vcard fs-2 text-primary mb-2 d-block"></i>
-                    <h6>Account</h6>
-                    <p class="text-secondary small mb-0">Update email, change password, manage your profile.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="feature-card text-center h-100">
-                    <i class="bi bi-grid fs-2 text-primary mb-2 d-block"></i>
-                    <h6>Dashboard</h6>
-                    <p class="text-secondary small mb-0">List all projects. Create, rename, copy, note, or delete.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="feature-card text-center h-100">
-                    <i class="bi bi-sliders fs-2 text-primary mb-2 d-block"></i>
-                    <h6>Admin Panel</h6>
-                    <p class="text-secondary small mb-0">LLM config, email settings, user management.</p>
-                </div>
-            </div>
-        </div><!--/ID:23-->
-    </div>
+<!-- ================= API ================= -->
+<!--ID:24--><section class="section" id="api" style="background:var(--bg-2);border-block:1px solid var(--line);">
+  <div class="container-xl">
+    <!--ID:22--><div class="mb-5" data-reveal>
+      <span class="sec-kicker">06 / API</span>
+      <h2 class="sec-title">The API at a glance</h2>
+      <p class="sec-sub">The SPA talks to <code class="mono">api.asp?action=…</code> over JSON - <code class="mono">application/x-www-form-urlencoded</code> with a <code class="mono">json=</code> field, or multipart for uploads. Sessions are cookie-based; the SPA pings <code class="mono">keepalive</code> every 5 minutes while logged in.</p>
+    </div><!--/ID:22-->
+    <!--ID:23--><div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-reveal><div class="api-card"><h3><i class="bi bi-box-arrow-in-right"></i>Authentication</h3><span class="api-chip">setup</span><span class="api-chip">login</span><span class="api-chip">logout</span><span class="api-chip">session</span><span class="api-chip">register</span><p>Initialise/seed the database (auto-called) and manage sessions.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.06s"><div class="api-card"><h3><i class="bi bi-person-gear"></i>Account</h3><span class="api-chip">change_password</span><span class="api-chip">update_email</span><span class="api-chip">forgot_password</span><span class="api-chip">reset_password</span><p>Credentials and email management, with single-use reset tokens.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.12s"><div class="api-card"><h3><i class="bi bi-sliders"></i>Admin configuration</h3><span class="api-chip">get_config</span><span class="api-chip">save_config</span><span class="api-chip">list_models</span><p>LLM and email settings, plus model discovery from the endpoint.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-reveal><div class="api-card"><h3><i class="bi bi-folder2"></i>Projects</h3><span class="api-chip">get_projects</span><span class="api-chip">create_project</span><span class="api-chip">rename_project</span><span class="api-chip">copy_project</span><span class="api-chip">delete_project</span><span class="api-chip">reset_project</span><span class="api-chip">update_notes</span><span class="api-chip">get_notes</span><p>Full project lifecycle - ownership is verified on every call.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.06s"><div class="api-card"><h3><i class="bi bi-robot"></i>Generation &amp; jobs</h3><span class="api-chip">generate_website</span><span class="api-chip">generate_worker</span><span class="api-chip">generate_status</span><span class="api-chip">cancel_generation</span><span class="api-chip">active_job</span><span class="api-chip">keepalive</span><p>Submit, detach, poll, cancel and re-attach to AI build jobs.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.12s"><div class="api-card"><h3><i class="bi bi-image"></i>Images</h3><span class="api-chip">upload_image</span><span class="api-chip">list_images</span><span class="api-chip">delete_image</span><p>Multipart uploads into the project's <code class="mono">img/</code>, auto-resized to 1920&nbsp;px.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-reveal><div class="api-card"><h3><i class="bi bi-clock-history"></i>History &amp; exports</h3><span class="api-chip">list_backups</span><span class="api-chip">restore_backup</span><span class="api-chip">preview_backup</span><span class="api-chip">download_project</span><span class="api-chip">get_project_files</span><p>Backups, full-screen previews, restores and the <code class="mono">autonome.zip</code> export.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.06s"><div class="api-card"><h3><i class="bi bi-chat-dots"></i>Chat &amp; users</h3><span class="api-chip">get_chat_history</span><span class="api-chip">admin_get_users</span><span class="api-chip">admin_update_user</span><p>Per-project prompt/reply logs, and role management for admins.</p></div></div>
+      <div class="col-md-6 col-lg-4" data-reveal style="--d:.12s"><div class="api-card"><h3><i class="bi bi-heart-pulse"></i>System</h3><span class="api-chip">version</span><span class="api-chip">ping</span><p>Health and version info.</p></div></div>
+    </div><!--/ID:23-->
+  </div>
 </section><!--/ID:24-->
 
-<!--ID:25--><div class="container"><div class="section-divider"></div></div><!--/ID:25-->
+<!-- ================= TIPS ================= -->
+<!--ID:28--><section class="section" id="tips">
+  <div class="container-xl">
+    <!--ID:25--><div class="mb-5" data-reveal>
+      <span class="sec-kicker">07 / Tips for best results</span>
+      <h2 class="sec-title">Talk to the agent like a designer, not a compiler.</h2>
+      <p class="sec-sub">Don't expect perfection in one shot - iterate. Small changes patch individual blocks; big changes are full redesigns you ask for explicitly.</p>
+    </div><!--/ID:25-->
+    <!--ID:26--><div class="row g-4 mb-5">
+      <div class="col-md-6 col-lg-3" data-reveal><div class="tip-card"><h3><i class="bi bi-crosshair"></i>Be specific</h3><p>Mention goal, audience, colors, style, tone and the content you want.</p></div></div>
+      <div class="col-md-6 col-lg-3" data-reveal style="--d:.05s"><div class="tip-card"><h3><i class="bi bi-image"></i>Photos first</h3><p>Upload your photos before the first build so the agent can design around them.</p></div></div>
+      <div class="col-md-6 col-lg-3" data-reveal style="--d:.1s"><div class="tip-card"><h3><i class="bi bi-arrow-repeat"></i>Iterate</h3><p>Refine in plain language across several rounds - that's what the agent is for.</p></div></div>
+      <div class="col-md-6 col-lg-3" data-reveal style="--d:.15s"><div class="tip-card"><h3><i class="bi bi-lightbulb"></i>Use suggestions</h3><p>The pick-list surfaces useful improvement patterns you might not think of.</p></div></div>
+      <div class="col-md-6 col-lg-3" data-reveal><div class="tip-card"><h3><i class="bi bi-magic"></i>Name big changes</h3><p>Ask for a full redesign explicitly; small tweaks are handled by patching blocks in place.</p></div></div>
+      <div class="col-md-6 col-lg-3" data-reveal style="--d:.05s"><div class="tip-card"><h3><i class="bi bi-translate"></i>Your language</h3><p>Write the prompt in your own language - the generated site comes out in that same language.</p></div></div>
+      <div class="col-md-6 col-lg-3" data-reveal style="--d:.1s"><div class="tip-card"><h3><i class="bi bi-speedometer2"></i>Raise max_tokens</h3><p>If you see “cut off by the token limit”, bump <code class="mono">max_tokens</code> in the LLM parameters.</p></div></div>
+      <div class="col-md-6 col-lg-3" data-reveal style="--d:.15s"><div class="tip-card"><h3><i class="bi bi-life-preserver"></i>Fallbacks built in</h3><p>Every generated image carries an onerror placeholder, so a broken link never ruins the page.</p></div></div>
+    </div><!--/ID:26-->
+    <!--ID:27--><div data-reveal>
+      <h3 class="fs-6 mb-3"><i class="bi bi-keyboard me-2 text-success"></i>Try these prompts - click to copy</h3>
+      <div class="d-flex flex-wrap gap-2">
+        <button type="button" class="prompt-chip" data-copy-prompt="Make the hero full-screen with a subtle parallax fade.">“Make the hero full-screen”</button>
+        <button type="button" class="prompt-chip" data-copy-prompt="Add a testimonials section with three quotes and photos.">“Add a testimonials section”</button>
+        <button type="button" class="prompt-chip" data-copy-prompt="Switch to a dark theme with an amber accent color.">“Switch to a dark theme”</button>
+        <button type="button" class="prompt-chip" data-copy-prompt="Add a call-to-action at the end of every section.">“Add a CTA after each section”</button>
+        <button type="button" class="prompt-chip" data-copy-prompt="Full redesign: retro 70s style, serif headings, warm palette.">“Full redesign - retro style”</button>
+      </div>
+    </div><!--/ID:27-->
+  </div>
+</section><!--/ID:28-->
 
-<!-- API -->
-<!--ID:29--><section id="api" class="py-5">
-    <div class="container py-lg-4">
-        <!--ID:26--><div class="text-center mb-5">
-            <h2 class="mb-3">The API at a glance</h2>
-            <p class="text-secondary mx-auto" style="max-width:600px;">The SPA talks to api.asp over JSON. All actions are session-authenticated with cookie-based sessions.</p>
-        </div><!--/ID:26-->
-
-        <!--ID:27--><div class="table-responsive">
-            <table class="table table-custom table-hover mb-0 rounded overflow-hidden shadow-sm" style="background:#fff; border-radius:.75rem;">
-                <thead>
-                    <tr>
-                        <th scope="col" class="ps-4 py-3">Action</th>
-                        <th scope="col" class="py-3">Purpose</th>
-                    </tr>
-                </thead>
-                <tbody class="small">
-                    <tr><td class="ps-4 fw-semibold text-primary">setup, login, logout, session, register</td><td>Authentication &amp; account management</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">change_password, update_email, forgot_password, reset_password</td><td>Password &amp; email management</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">get_config, save_config, list_models</td><td>Admin LLM &amp; email configuration</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">get_projects, create_project, rename_project, copy_project, delete_project, reset_project, update_notes</td><td>Project management</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">generate_website, generate_worker, generate_status, cancel_generation, active_job, keepalive</td><td>AI generation jobs (async)</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">upload_image, list_images, delete_image</td><td>Image handling &amp; auto-resize</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">list_backups, restore_backup, preview_backup, download_project, get_project_files</td><td>Version history &amp; exports</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">get_chat_history</td><td>Per-project chat log</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">admin_get_users, admin_update_user</td><td>User administration</td></tr>
-                    <tr><td class="ps-4 fw-semibold text-primary">version, ping</td><td>Health &amp; version info</td></tr>
-                </tbody>
-            </table>
-        </div><!--/ID:27-->
-
-        <!--ID:28--><div class="alert alert-info mt-4 d-flex align-items-start gap-2" role="alert">
-            <i class="bi bi-info-circle-fill mt-1"></i>
-            <div><strong>Sessions:</strong> Cookie-based. The SPA pings keepalive every 5 minutes while logged in. Project operations verify ownership (user_id), backups and filenames are checked against path traversal, and project folders use random names so usernames never appear in URLs.</div>
-        </div><!--/ID:28-->
+<!-- ================= SECURITY ================= -->
+<!--ID:31--><section class="section" id="security" style="background:var(--bg-2);border-block:1px solid var(--line);">
+  <div class="container-xl">
+    <div class="row g-5">
+      <!--ID:29--><div class="col-lg-4" data-reveal>
+        <span class="sec-kicker">08 / Security</span>
+        <h2 class="sec-title mb-3">Private by construction.</h2>
+        <p class="sec-sub">Autonome makes outbound requests only to the LLM endpoint you configure and (optionally) to the public Wikipedia API. Everything else stays on your machine - here's how it's protected.</p>
+      </div><!--/ID:29-->
+      <!--ID:30--><div class="col-lg-8">
+        <div class="sec-row" data-reveal><span class="sec-ico"><i class="bi bi-key"></i></span><div><h3>Change the default credentials immediately</h3><p>The <code class="mono">admin / admin123</code> account is created on first run and is widely known. Rotate it right after your first login.</p></div></div>
+        <div class="sec-row" data-reveal style="--d:.05s"><span class="sec-ico"><i class="bi bi-lock"></i></span><div><h3>Strong hashing, short-lived tokens</h3><p>Passwords are stored as bcrypt hashes (ASPPY crypto). Reset tokens are single-use and expire after 1 hour.</p></div></div>
+        <div class="sec-row" data-reveal style="--d:.1s"><span class="sec-ico"><i class="bi bi-fingerprint"></i></span><div><h3>Sessions, ownership &amp; path checks</h3><p>The API is session-authenticated; project operations verify ownership (<code class="mono">user_id</code>), backups and filenames are checked against path traversal, and random folder names keep usernames out of URLs.</p></div></div>
+        <div class="sec-row" data-reveal style="--d:.15s"><span class="sec-ico"><i class="bi bi-hdd-network"></i></span><div><h3>The only outbound calls are yours to choose</h3><p>Your configured LLM endpoint, and optionally the public Wikipedia API. No telemetry, no analytics, no phone-home.</p></div></div>
+        <div class="sec-row" data-reveal style="--d:.2s"><span class="sec-ico"><i class="bi bi-file-earmark-check"></i></span><div><h3>A broken AI response never overwrites your site</h3><p>Only <code class="mono">index.html</code> is ever written by the model. Any other filename is refused, and every generated document must pass a structural completeness check before it's saved.</p></div></div>
+      </div><!--/ID:30-->
     </div>
-</section><!--/ID:29-->
+  </div>
+</section><!--/ID:31-->
 
-<!--ID:30--><div class="container"><div class="section-divider"></div></div><!--/ID:30-->
-
-<!-- Tips & Security -->
-<!--ID:33--><section id="tips" class="py-5 bg-white">
-    <div class="container py-lg-4">
-        <!--ID:31--><div class="row g-4">
-            <!-- Tips -->
-            <div class="col-lg-6">
-                <h3 class="mb-4"><i class="bi bi-lightbulb me-2 text-primary"></i>Tips for best results</h3>
-                <ul class="list-unstyled mb-0">
-                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">1</span>
-                        <div><strong>Be specific.</strong> Mention goal, audience, colors, style, tone and the content you want.</div>
-                    </li>
-                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">2</span>
-                        <div><strong>Upload photos first.</strong> The agent can design around them for much better results.</div>
-                    </li>
-                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">3</span>
-                        <div><strong>Iterate.</strong> Don't expect perfection in one shot - ask for refinements in plain language.</div>
-                    </li>
-                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">4</span>
-                        <div><strong>Use suggestions.</strong> Discover useful improvement patterns with the built-in prompt library.</div>
-                    </li>
-                    <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">5</span>
-                        <div><strong>Write in your own language.</strong> The generated site is written in the same language as your request.</div>
-                    </li>
-                    <li class="d-flex gap-3">
-                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2 py-1 mt-1 flex-shrink-0">6</span>
-                        <div><strong>Raise max_tokens</strong> if you see "cut off by the token limit" errors.</div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Security -->
-            <div class="col-lg-6">
-                <h3 class="mb-4"><i class="bi bi-shield-lock me-2 text-primary"></i>Security notes</h3>
-                <div class="feature-card h-100">
-                    <ul class="list-unstyled mb-0">
-                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
-                            <div><strong>Change default credentials</strong> immediately after first login (admin / admin123).</div>
-                        </li>
-                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
-                            <div><strong>Bcrypt hashes</strong> for passwords. Reset tokens are single-use and expire after 1 hour.</div>
-                        </li>
-                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
-                            <div><strong>Session-authenticated API</strong>. Project operations verify ownership (user_id).</div>
-                        </li>
-                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
-                            <div><strong>Path traversal protection</strong> on backups and filenames. Random project folder names.</div>
-                        </li>
-                        <li class="d-flex gap-3 mb-3 pb-3 border-bottom">
-                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
-                            <div><strong>Limited outbound requests</strong> - only to your configured LLM endpoint and optionally Wikipedia.</div>
-                        </li>
-                        <li class="d-flex gap-3">
-                            <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0"></i>
-                            <div><strong>ValidateFileExtension</strong> refuses any filename other than index.html. Structural completeness check before saving - a broken AI response never overwrites your site.</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div><!--/ID:31-->
-
-        <!-- Links -->
-        <!--ID:32--><div class="text-center mt-5">
-            <p class="text-secondary mb-3">Learn more</p>
-            <div class="d-flex flex-wrap justify-content-center gap-3">
-                <a href="https://github.com/PieterCooreman/ASPPY" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom btn-sm"><i class="bi bi-github me-2"></i>ASPPY on GitHub</a>
-                <a href="https://www.piwheels.org/project/asppy/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom btn-sm"><i class="bi bi-box me-2"></i>ASPPY on PyPI</a>
-            </div>
-        </div><!--/ID:32-->
+<!-- ================= CTA ================= -->
+<!--ID:32--><section class="section">
+  <div class="container-xl">
+    <div class="cta-panel text-center py-5 px-4" data-reveal>
+      <span class="chip chip-accent mx-auto mb-4 d-inline-flex"><span class="pulse-dot"></span>Ready when you are</span>
+      <h2 class="mb-3">Your hardware. Your model.<br>Your website.</h2>
+      <p class="lead text-secondary mx-auto mb-4" style="max-width:36rem;">One folder of files, one command to start, and a conversation that ends in a finished site - hosted wherever you like, owned entirely by you.</p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="#quickstart" class="btn btn-accent px-4"><i class="bi bi-terminal me-2"></i>Start building</a>
+        <a href="https://github.com/PieterCooreman/ASPPY" target="_blank" rel="noopener" class="btn btn-ghost px-4"><i class="bi bi-github me-2"></i>ASPPY on GitHub</a>
+      </div>
     </div>
-</section><!--/ID:33-->
+  </div>
+</section><!--/ID:32-->
+</main>
 
-<!-- Footer -->
-<!--ID:36--><footer class="py-5 mt-0 border-top bg-white">
-    <div class="container">
-        <div class="row align-items-center g-4">
-            <!--ID:34--><div class="col-md-6 text-center text-md-start">
-                <p class="mb-1 fw-semibold"><i class="bi bi-hexagon-fill me-2" style="color:var(--primary);"></i>Autonome</p>
-                <p class="small text-secondary mb-0">&copy; 2026 Autonome. Self-hosted, AI-powered website builder.</p>
-            </div><!--/ID:34-->
-            <!--ID:35--><div class="col-md-6 text-center text-md-end">
-                <a href="#" class="text-decoration-none small me-3" data-bs-toggle="modal" data-bs-target="#privacyModal"><i class="bi bi-shield-check me-1"></i>Privacy</a>
-                <a href="#" class="text-decoration-none small" data-bs-toggle="modal" data-bs-target="#cookieModal"><i class="bi bi-cookie me-1"></i>Cookies / Cookie settings</a>
-            </div><!--/ID:35-->
-        </div>
-    </div>
-</footer><!--/ID:36-->
+<!-- ================= FOOTER ================= -->
+<!--ID:35--><footer class="footer-az pt-5 pb-4">
+  <div class="container-xl">
+    <!--ID:33--><div class="row g-4 mb-4">
+      <div class="col-lg-5">
+        <a class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none" href="#top" aria-label="Autonome home">
+          <span class="brand-mark" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 7l6 5-6 5V7z" fill="#4ade80"/><rect x="13" y="15.5" width="7" height="2.4" rx="1.2" fill="#a78bfa"/></svg></span>
+          <span class="brand-name">Autonome</span>
+        </a>
+        <p class="small mb-0" style="color:var(--muted);max-width:26rem;">A self-hosted, AI-powered website builder for the ASPPY runtime. Describe it - the agent builds it. No cloud, no subscriptions, no data leaving your network.</p>
+      </div>
+      <div class="col-6 col-lg-3">
+        <h6>Product</h6>
+        <ul class="list-unstyled small d-flex flex-column gap-2 mb-0">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How a generation works</a></li>
+          <li><a href="#ui">User interface tour</a></li>
+          <li><a href="#quickstart">Quick start</a></li>
+          <li><a href="#security">Security notes</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6>Resources</h6>
+        <ul class="list-unstyled small d-flex flex-column gap-2 mb-0">
+          <li><a href="https://github.com/PieterCooreman/ASPPY" target="_blank" rel="noopener">ASPPY on GitHub <i class="bi bi-box-arrow-up-right tiny"></i></a></li>
+          <li><a href="https://www.piwheels.org/project/asppy/" target="_blank" rel="noopener">asppy on piwheels <i class="bi bi-box-arrow-up-right tiny"></i></a></li>
+          <li><a href="#api">API reference</a></li>
+          <li><a href="#tips">Tips for best results</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2">
+        <h6>Legal</h6>
+        <ul class="list-unstyled small d-flex flex-column gap-2 mb-0">
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy statement</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#cookieModal">Cookies / Cookie settings</a></li>
+        </ul>
+      </div>
+    </div><!--/ID:33-->
+    <!--ID:34--><div class="d-flex flex-wrap justify-content-between align-items-center pt-4 border-top small" style="border-color:var(--line)!important;color:var(--muted);">
+      <span>&copy; <span id="year">2026</span> Autonome · Websites that build themselves.</span>
+      <span class="mono" style="font-size:.7rem;">asppy 0.0.0.0 8080 &lt;your-folder&gt;</span>
+    </div><!--/ID:34-->
+  </div>
+</footer><!--/ID:35-->
 
-<!-- Cookie Modal -->
-<!--ID:40--><div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <!--ID:37--><div class="modal-header">
-                <h5 class="modal-title" id="cookieModalLabel"><i class="bi bi-cookie me-2"></i>Cookies</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div><!--/ID:37-->
-            <!--ID:38--><div class="modal-body">
-                <p class="small text-secondary mb-3">Autonome uses the following cookies:</p>
-                <ul class="small text-secondary mb-3 ps-3">
-                    <li><strong>session</strong> (functional) - Maintains your login session via HTTP cookie. Expires when you close the browser or log out.</li>
-                    <li><strong>cookieConsent</strong> (localStorage) - Stores whether you accepted or rejected cookies. No tracking or marketing cookies are used on this site.</li>
-                </ul>
-                <p class="small text-secondary mb-0">If embedded content (maps, video, analytics) is added later, it may set its own cookies - see the Privacy statement for details.</p>
-            </div><!--/ID:38-->
-            <!--ID:39--><div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" id="cookieReject" data-bs-dismiss="modal">Reject</button>
-                <button type="button" class="btn btn-primary-custom btn-sm px-4" id="cookieAccept">Accept</button>
-            </div><!--/ID:39-->
-        </div>
+<!-- ================= COOKIE MODAL ================= -->
+<!--ID:39--><div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!--ID:36--><div class="modal-header">
+        <h5 class="modal-title" id="cookieModalLabel"><i class="bi bi-shield-lock me-2 text-success"></i>Cookies &amp; local storage</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div><!--/ID:36-->
+      <!--ID:37--><div class="modal-body">
+        <p class="small mb-2" style="color:var(--muted)">This page uses only <strong class="text-light">functional local storage</strong> (<code class="mono">localStorage</code>) on your device to remember your cookie preference and small UI state. Nothing is sent to a server.</p>
+        <p class="small mb-0" style="color:var(--muted)">No tracking or marketing cookies are used, and no analytics, maps or third-party embeds are present on this page. You can change your choice at any time via the “Cookies” link in the footer.</p>
+      </div><!--/ID:37-->
+      <!--ID:38--><div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" id="cookieReject" data-bs-dismiss="modal">Reject</button>
+        <button type="button" class="btn btn-accent btn-sm" id="cookieAccept">Accept</button>
+      </div><!--/ID:38-->
     </div>
-</div><!--/ID:40--><!--ID:41-->
+  </div>
+</div><!--/ID:39-->
 
-<!-- Privacy Modal -->
-<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="privacyModalLabel"><i class="bi bi-shield-check me-2"></i>Privacy statement</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body small">
-                <p><strong>Data controller:</strong> Autonome (self-hosted).</p>
-                <p><strong>What we collect:</strong></p>
-                <ul>
-                    <li>User-provided data: username, email address, password (bcrypt hash), project names and notes.</li>
-                    <li>Generated websites: index.html files stored in per-project folders.</li>
-                    <li>Uploaded images: stored in each project's img/ folder (auto-resized to max 1920 px).</li>
-                    <li>Chat history: prompts and AI responses per project, stored in SQLite.</li>
-                    <li>Server logs: IP address and user agent for security purposes.</li>
-                </ul>
-                <p><strong>Purpose &amp; legal basis:</strong></p>
-                <ul>
-                    <li>To operate and secure the website (legitimate interest / contract).</li>
-                    <li>To respond to your requests via the AI agent (consent).</li>
-                    <li>To send password-reset and generation-finished emails (optional, consent-based).</li>
-                </ul>
-                <p><strong>Data sharing:</strong> No data is sold. Outbound requests go only to your configured LLM endpoint and optionally to the public Wikipedia API.</p>
-                <p><strong>Retention:</strong> Server logs are kept briefly. Form/chat data is retained as long as the project exists. Reset tokens expire after 1 hour and are single-use.</p>
-                <p><strong>Your rights:</strong> You may request access, correction or deletion of your data. Admins can manage users and promote/demote roles.</p>
-                <p class="mb-0 text-secondary">This is a starter template - adapt this text to your actual processing setup.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
+<!-- ================= PRIVACY MODAL ================= -->
+<!--ID:41--><div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <!--ID:40--><div class="modal-header">
+        <h5 class="modal-title" id="privacyModalLabel"><i class="bi bi-file-earmark-lock me-2 text-success"></i>Privacy statement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div><!--/ID:40-->
+      <div class="modal-body small">
+        <p><strong>Data controller:</strong> Autonome - a self-hosted, AI-powered website builder. This documentation page is served from your own hardware.</p>
+        <p><strong>What we collect:</strong> this static single-file page transmits no personal data to any server and sets no cookies beyond the functional local-storage preference you choose in the cookie notice (stored only in your browser). The Autonome application itself stores user accounts, projects and chat history in a local SQLite database on the host machine - never in the cloud.</p>
+        <p><strong>Purpose &amp; legal basis:</strong> to operate and secure the website (legitimate interest / contract) and to respond to your requests (consent).</p>
+        <p><strong>Outbound connections:</strong> the application communicates only with the LLM endpoint you configure and, optionally, the public Wikipedia API. No telemetry or analytics is sent.</p>
+        <p><strong>Retention:</strong> local-storage preferences persist until you clear them; server-side data (in a full Autonome deployment) is retained while your account exists and can be deleted by deleting your projects or account.</p>
+        <p><strong>Your rights:</strong> you may request access, correction or deletion of any data. In a self-hosted deployment you are the administrator - your data lives on your machine and you control it directly.</p>
+        <p class="mb-0" style="color:var(--muted)">Questions? Contact the operator of this instance via the site's contact details.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
-</div>
+  </div>
+</div><!--/ID:41--><!--ID:42-->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Cookie consent logic
-    try {
-        if (!localStorage.getItem('cookieConsent')) {
-            var cookieEl = document.getElementById('cookieModal');
-            if (cookieEl && window.bootstrap) new bootstrap.Modal(cookieEl).show();
-        }
-    } catch(e) {}
+(function(){
+"use strict";
+var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var accBtn = document.getElementById('cookieAccept');
-    if (accBtn) accBtn.addEventListener('click', function() {
-        try { localStorage.setItem('cookieConsent','accepted'); } catch(e) {}
-        var m = document.getElementById('cookieModal');
-        if (m && window.bootstrap) { var inst = bootstrap.Modal.getInstance(m); if (inst) inst.hide(); }
-    });
+/* ---------- Cookie consent (once via localStorage) ---------- */
+function storeConsent(v){ try{ localStorage.setItem('cookieConsent', v); }catch(e){} }
+document.addEventListener('DOMContentLoaded', function(){
+  var modal = document.getElementById('cookieModal');
+  try{ if(!localStorage.getItem('cookieConsent') && modal && window.bootstrap){ new bootstrap.Modal(modal).show(); } }catch(e){}
 
-    var rejBtn = document.getElementById('cookieReject');
-    if (rejBtn) rejBtn.addEventListener('click', function() {
-        try { localStorage.setItem('cookieConsent','rejected'); } catch(e) {}
-    });
+  var acc = document.getElementById('cookieAccept');
+  if(acc) acc.addEventListener('click', function(){ storeConsent('accepted'); hideModal(modal); });
+  var rej = document.getElementById('cookieReject');
+  if(rej) rej.addEventListener('click', function(){ storeConsent('rejected'); });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-            var target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                var offset = 80;
-                var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                window.scrollTo({ top: top, behavior: 'smooth' });
-                // Close mobile nav if open
-                var navCollapse = document.getElementById('mainNav');
-                if (navCollapse && navCollapse.classList.contains('show')) {
-                    bootstrap.Collapse.getInstance(navCollapse)?.hide();
-                }
-            }
-        });
-    });
+  /* Close (X / backdrop / Esc) without an explicit choice -> 'dismissed' */
+  if(modal) modal.addEventListener('hidden.bs.modal', function(){
+    try{ if(!localStorage.getItem('cookieConsent')) localStorage.setItem('cookieConsent','dismissed'); }catch(e){}
+  });
 
-    // Active nav link on scroll
-    var sections = document.querySelectorAll('section[id]');
-    var navLinks = document.querySelectorAll('.nav-link-custom');
-    window.addEventListener('scroll', function() {
-        var scrollY = window.pageYOffset;
-        sections.forEach(function(section) {
-            var top = section.offsetTop - 120;
-            var height = section.offsetHeight;
-            var id = section.getAttribute('id');
-            if (scrollY >= top && scrollY < top + height) {
-                navLinks.forEach(function(link) {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + id) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }, { passive: true });
+  /* Year */
+  var y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
 });
+function hideModal(el){ if(el && window.bootstrap){ var inst = bootstrap.Modal.getInstance(el); if(inst) inst.hide(); else new bootstrap.Modal(el).hide(); } }
+
+/* ---------- Hero terminal typewriter ---------- */
+var termLines = [
+  {p:'$ ', t:'asppy 0.0.0.0 8080 www', c:'t-cmd'},
+  {p:'',   t:'● Autonome v1.4 ready - http://localhost:8080', c:'t-ok'},
+  {p:'',   t:'# sign in → new project → describe your site', c:'t-dim'},
+  {p:'> ', t:'"A warm, modern site for my bakery - opening hours, menu, photos"', c:'t-prompt'},
+  {p:'',   t:'🧠 researching topic … done', c:'t-ai'},
+  {p:'',   t:'✍️  writing index.html (Bootstrap 5.3) … done', c:'t-ai'},
+  {p:'',   t:'✓ autonome.zip ready · 1 file · 0 external calls', c:'t-ok'}
+];
+function buildTerminal(){
+  var body = document.getElementById('termBody'); if(!body) return;
+  var cursor = body.querySelector('.t-cursor');
+  function makeLine(item){
+    var line = document.createElement('div'); line.className = 'tl';
+    var p = document.createElement('span'); p.className='tp'; p.textContent = item.p;
+    var t = document.createElement('span'); t.className = item.c;
+    line.appendChild(p); line.appendChild(t); body.insertBefore(line, cursor);
+    return t;
+  }
+  if(reduceMotion){ termLines.forEach(function(it){ makeLine(it).textContent = it.t; }); return; }
+  var li = 0;
+  function typeLine(){
+    if(li >= termLines.length) return;
+    var item = termLines[li], target = makeLine(item), ci = 0;
+    (function tick(){
+      if(ci <= item.t.length){ target.textContent = item.t.slice(0, ci); ci++; setTimeout(tick, 13 + Math.random()*22); }
+      else { li++; setTimeout(typeLine, item.c === 't-prompt' ? 550 : 340); }
+    })();
+  }
+  setTimeout(typeLine, 500);
+}
+
+/* ---------- Scroll reveal ---------- */
+function initReveal(){
+  var els = document.querySelectorAll('[data-reveal]');
+  if(reduceMotion || !('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){ io.observe(el); });
+}
+
+/* ---------- Marquee: duplicate track for seamless loop ---------- */
+function initMarquee(){
+  var track = document.getElementById('mqTrack'); if(!track) return;
+  var clone = track.innerHTML;
+  track.insertAdjacentHTML('beforeend', '<span class="sr-only" aria-hidden="true"></span>' + clone.replace(/<span/g,'<span aria-hidden="true"'));
+}
+
+/* ---------- Copy to clipboard (with fallback) ---------- */
+function copyText(text, btn){
+  function done(){ if(!btn) return; var old = btn.textContent; btn.classList.add('done'); btn.textContent = 'copied ✓'; setTimeout(function(){ btn.classList.remove('done'); btn.textContent = old; }, 1500); }
+  function fallback(){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} ta.remove(); done(); }
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done).catch(fallback); } else { fallback(); }
+}
+document.addEventListener('click', function(ev){
+  var cb = ev.target.closest('[data-copy]');
+  if(cb){ copyText(cb.getAttribute('data-copy'), cb); return; }
+  var pc = ev.target.closest('[data-copy-prompt]');
+  if(pc){ copyText(pc.getAttribute('data-copy-prompt'), pc); }
+});
+
+/* ---------- Close mobile navbar after choosing a link ---------- */
+document.addEventListener('click', function(ev){
+  var link = ev.target.closest('#navMenu a.nav-link, #navMenu .btn');
+  if(link && window.bootstrap){
+    var menu = document.getElementById('navMenu');
+    var inst = bootstrap.Collapse.getInstance(menu);
+    if(inst) inst.hide();
+  }
+});
+
+/* ---------- Boot ---------- */
+document.addEventListener('DOMContentLoaded', function(){ buildTerminal(); initReveal(); initMarquee(); });
+})();
 </script>
-<!--/ID:41--></body>
+<!--/ID:42--></body>
 </html>
