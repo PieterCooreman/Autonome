@@ -1,6 +1,4 @@
-# Autonome Agentic CMS
-
-**Websites that build themselves.**
+# Autonome Agentic CMS - Websites that build themselves
 
 Autonome is a self-hosted, AI-powered website builder. You describe your website in plain
 language (purpose, audience, style, content) and an autonomous AI agent researches the topic,
