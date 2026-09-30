@@ -8,9 +8,21 @@ subscriptions, no data leaving your network.
 
 ## Why Autonome?
 
-A few years ago, nobody could have predicted that by 2026, the World Wide Web would be (re)built by AI large language models. Yet, as of mid-2026, over 30% of the entire web is developed, managed, and created by AI models, both cloud-based and local. WordPress certainly did not see this coming. The MCP implementation in WordPress is crippled, limited, buggy, and insecure. MCP in WordPress is a dead-end street. WordPress mistakenly assumes that humans are still better at writing texts, designing UX/UI, and writing code.
+A few years ago, few people anticipated how fundamentally AI would change the way websites are created, designed, maintained and managed.
 
-They are not. AI is better, faster, and cheaper at all of these tasks. Autonome proves it is.
+By 2026, AI is no longer just a tool for generating text or assisting developers. It is increasingly capable of orchestrating entire digital workflows, from business requirements and information architecture to visual design, content production, code generation and ongoing maintenance.
+
+The implications for traditional CMS platforms are profound.
+
+WordPress was built around the assumption that humans would operate the system: navigate dashboards, edit blocks, configure themes, install plugins and manage individual settings. AI agents require something fundamentally different: comprehensive machine-readable capabilities, predictable execution, reliable state management, automated verification and secure end-to-end control.
+
+The emerging WordPress MCP ecosystem is a step towards this future, but exposing a limited set of operations through an agent interface is not the same as making the entire platform autonomously manageable.
+
+The question is no longer whether AI can generate a website. It is whether a CMS can give AI everything it needs to build, operate, test, improve and maintain that website reliably.
+
+The competitive advantage will increasingly belong to platforms designed for AI agents as their primary operators, rather than platforms that merely allow AI agents to interact with interfaces originally designed for humans.
+
+Autonome is an example worth examining in this context: not simply as another AI website builder, but as a test of what becomes possible when website creation and management are approached as an integrated, AI-driven process.
 
 ## ASPPY
 
