@@ -6,6 +6,14 @@ designs and writes the complete site for you — as a single, self-contained `in
 on Bootstrap 5. It runs entirely on your own hardware against your own LLM. No cloud, no
 subscriptions, no data leaving your network.
 
+## Why Autonome?
+
+A few years ago, nobody could have predicted that by 2026, the World Wide Web would be (re)built by AI large language models. Yet, as of mid-2026, over 30% of the entire web is developed, managed, and created by AI models, both cloud-based and local. WordPress certainly did not see this coming. The MCP implementation in WordPress is crippled, limited, buggy, and insecure. MCP in WordPress is a dead-end street. WordPress mistakenly assumes that humans are still better at writing texts, designing UX/UI, and writing code.
+
+They are not. AI is better, faster, and cheaper at all of these tasks. Autonome proves it is.
+
+## ASPPY
+
 Autonome is **built for ASPPY**, the Classic ASP/VBScript runtime for Python. The whole
 application consists of just a handful of files that you can keep in any folder you like (the
 `www` folder in this project is only one example): the UI is a React single-page app
